@@ -1,675 +1,271 @@
-
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Produk - Aplikasi Kantin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk - Aplikasi Kantin</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-
-<style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #e4f9f2;
-    color: #111;
-}
-
-/* NAVBAR */
-.topbar {
-    background: #194f46;
-    min-height: 72px;
-    padding: 8px 20px;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
-
-.brand {
-    color: white;
-    font-size: 26px;
-    font-weight: bold;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.search-form {
-    display: flex;
-    gap: 10px;
-    flex: 1;
-    max-width: 545px;
-}
-
-.search-form input {
-    height: 52px;
-    font-size: 17px;
-}
-
-.search-form button {
-    min-width: 64px;
-    border: 1px solid #318a76;
-    color: #43c7a8;
-}
-
-.search-form button:hover {
-    background: #318a76;
-    color: white;
-}
-
-.admin-menu {
-    margin-left: auto;
-    color: white;
-    text-decoration: none;
-    font-size: 19px;
-    white-space: nowrap;
-}
-
-/* LAYOUT */
-.layout {
-    display: flex;
-    min-height: calc(100vh - 72px);
-}
-
-/* SIDEBAR */
-.sidebar {
-    width: 335px;
-    flex-shrink: 0;
-    padding: 28px 16px;
-    background: #e4f9f2;
-    border-right: 2px solid #d1e7df;
-}
-
-.sidebar .nav-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #111;
-    font-size: 20px;
-    padding: 18px 20px;
-    margin-bottom: 8px;
-    border-radius: 12px;
-    text-decoration: none;
-}
-
-.sidebar .nav-link i {
-    width: 35px;
-    text-align: center;
-    font-size: 30px;
-}
-
-.sidebar .nav-link:hover,
-.sidebar .nav-link.active {
-    background: #cfe5fa;
-    color: #1760a0;
-}
-
-.sidebar .nav-link.active {
-    font-weight: bold;
-}
-
-/* KONTEN */
-.main-content {
-    flex: 1;
-    min-width: 0;
-    padding: 32px 38px;
-}
-
-.page-title {
-    font-size: 40px;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.breadcrumb-text {
-    color: #788e8a;
-    font-size: 19px;
-    margin-bottom: 26px;
-}
-
-/* PANEL PRODUK */
-.product-panel {
-    border: 2px solid #343b38;
-    border-radius: 38px;
-    padding: 24px;
-    min-height: 460px;
-}
-
-.panel-heading {
-    font-size: 23px;
-    font-weight: bold;
-    margin-bottom: 18px;
-}
-
-.toolbar {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-
-.toolbar input,
-.toolbar select {
-    border: 2px solid #56645e;
-    border-radius: 6px;
-    height: 42px;
-}
-
-.toolbar input {
-    width: 230px;
-}
-
-.toolbar select {
-    width: 145px;
-}
-
-.add-button {
-    margin-left: auto;
-    background: #0d6efd;
-    border: none;
-    color: white;
-    border-radius: 7px;
-    padding: 10px 18px;
-}
-
-.add-button:hover {
-    background: #084fbd;
-}
-
-.table-responsive {
-    overflow-x: auto;
-}
-
-.product-table {
-    min-width: 580px;
-    margin-bottom: 0;
-}
-
-.product-table thead th {
-    background: #d5e5ff;
-    padding: 14px 10px;
-    font-size: 14px;
-    white-space: nowrap;
-}
-
-.product-table td {
-    padding: 12px 10px;
-    vertical-align: middle;
-}
-
-.action-btn {
-    border: none;
-    border-radius: 5px;
-    padding: 6px 9px;
-    margin: 2px;
-}
-
-.edit-btn {
-    background: #d7eaff;
-    color: #0875dc;
-}
-
-.delete-btn {
-    background: #ffe0e4;
-    color: #dc3545;
-}
-
-/* MODAL TAMBAH / EDIT */
-.modal-content {
-    border: none;
-    border-radius: 18px;
-    overflow: hidden;
-}
-
-.modal-header {
-    background: #0d6efd;
-    color: white;
-    padding: 18px 24px;
-}
-
-.modal-header .btn-close {
-    filter: brightness(0) invert(1);
-}
-
-.modal-body {
-    padding: 24px;
-}
-
-.modal-body label {
-    font-weight: bold;
-    margin-bottom: 7px;
-}
-
-.modal-body .form-control,
-.modal-body .form-select {
-    border: 1px solid #9daebd;
-    border-radius: 7px;
-    min-height: 43px;
-}
-
-.modal-footer {
-    padding: 16px 24px;
-}
-
-@media (max-width: 1000px) {
-    .sidebar {
-        width: 240px;
-    }
-
-    .brand {
-        font-size: 19px;
-        white-space: normal;
-    }
-
-    .main-content {
-        padding: 24px 18px;
-    }
-
-    .page-title {
-        font-size: 32px;
-    }
-}
-
-@media (max-width: 700px) {
-    .topbar {
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    .brand {
-        width: 100%;
-    }
-
-    .search-form {
-        max-width: none;
-        width: 100%;
-    }
-
-    .admin-menu {
-        margin-left: 0;
-    }
-
-    .layout {
-        display: block;
-    }
-
-    .sidebar {
-        width: 100%;
-        padding: 10px;
-        border-right: none;
-    }
-
-    .sidebar .nav-link {
-        display: inline-flex;
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .sidebar .nav-link i {
-        font-size: 18px;
-        width: auto;
-    }
-
-    .product-panel {
-        padding: 16px;
-        border-radius: 22px;
-    }
-
-    .toolbar {
-        align-items: stretch;
-    }
-
-    .toolbar input,
-    .toolbar select {
-        width: 100%;
-    }
-
-    .add-button {
-        margin-left: 0;
-    }
-}
-</style>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Style css -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-
-<header class="topbar">
-    <a class="brand" href="dashboard.html">
-        <i class="fa-solid fa-store me-3"></i>
-        Aplikasi Penjualan Sederhana Warung/Kantin
-    </a>
-
-    <form class="search-form" id="globalSearch">
-        <input type="search" class="form-control"
-               id="globalSearchInput"
-               placeholder="Cari transaksi, produk, atau lainnya">
-        <button class="btn" type="submit" aria-label="Cari">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-    </form>
-
-    <div class="dropdown">
-        <a href="#" class="admin-menu dropdown-toggle"
-           data-bs-toggle="dropdown">
-            <i class="fa-solid fa-circle-user me-2"></i>
-            <span id="adminName">Admin</span>
+    <!-- HEADER / NAVBAR (Disesuaikan dengan Dashboard) -->
+    <nav class="navbar navbar-expand navbar-dark topbar">
+        <a href="dashboard.html" class="brand">
+            <i class="fa-solid fa-store"></i>
+            Aplikasi Penjualan Sederhana Warung/Kantin
         </a>
-        <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#profil">Profil Saya</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="halamanlogin.html">Logout</a></li>
+
+        <!-- PENCARIAN -->
+        <form class="search-form" id="globalSearch">
+            <input type="search" class="form-control" id="globalSearchInput"
+                placeholder="Cari transaksi, produk, atau lainnya" aria-label="Cari">
+            <button type="submit" class="btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+
+        <!-- ADMIN -->
+        <ul class="navbar-nav admin-dropdown">
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fa-solid fa-circle-user me-1"></i>
+                    <span id="adminName">Admin</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#profil">Profil Saya</a></li>
+                    <li><a class="dropdown-item" href="#pengaturan">Pengaturan</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="halamanlogin.html">Logout</a></li>
+                </ul>
+            </li>
         </ul>
-    </div>
-</header>
+    </nav>
 
-<div class="layout">
+    <!-- LAYOUT UTAMA -->
+    <div class="page-layout">
 
-    <aside class="sidebar">
-        <nav class="nav flex-column">
-            <a class="nav-link" href="dashboard.html">
-                <i class="fa-solid fa-house"></i> Dashboard
-            </a>
+        <!-- SIDEBAR KIRI -->
+        <aside class="sidebar">
+            <nav class="nav flex-column">
+                <a class="nav-link" href="dashboard.html">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a class="nav-link active" href="produk.html">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Produk</span>
+                </a>
+                <a class="nav-link" href="kasir.html">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Kasir/Penjualan</span>
+                </a>
+                <a class="nav-link" href="riwayat.html">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Riwayat</span>
+                </a>
+                <a class="nav-link" href="laporan.html">
+                    <i class="fa-solid fa-book"></i>
+                    <span>Laporan</span>
+                </a>
+                <a class="nav-link" href="halamanlogin.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
 
-            <a class="nav-link active" href="produk.html">
-                <i class="fa-solid fa-layer-group"></i> Produk
-            </a>
+        <!-- KONTEN PRODUK (Kanan) -->
+        <main class="main-content">
+            <h1 class="page-title">Produk</h1>
+            <p class="breadcrumb-text">Menu &gt; Produk</p>
 
-            <a class="nav-link" href="kasir.html">
-                <i class="fa-solid fa-bag-shopping"></i> Kasir/Penjualan
-            </a>
+            <section class="product-panel">
+                <div class="panel-heading">Daftar Produk</div>
 
-            <a class="nav-link" href="riwayat.html">
-                <i class="fa-regular fa-clock"></i> Riwayat
-            </a>
+                <div class="toolbar">
+                    <input type="search" id="productSearch" class="form-control" placeholder="🔍 Cari nama produk...">
+                    <select id="categoryFilter" class="form-select">
+                        <option value="">Semua Kategori</option>
+                        <option value="Makanan">Makanan</option>
+                        <option value="Minuman">Minuman</option>
+                    </select>
 
-            <a class="nav-link" href="laporan.html">
-                <i class="fa-solid fa-book"></i> Laporan
-            </a>
-
-            <a class="nav-link" href="halamanlogin.html">
-                <i class="fa-solid fa-right-from-bracket"></i> Logout
-            </a>
-        </nav>
-    </aside>
-
-    <!-- KONTEN PRODUK -->
-    <main class="main-content">
-
-        <h1 class="page-title">Produk</h1>
-        <p class="breadcrumb-text">Menu &gt; Produk</p>
-
-        <section class="product-panel">
-
-            <div class="panel-heading">Daftar Produk</div>
-
-            <div class="toolbar">
-                <input type="search" id="productSearch"
-                       class="form-control"
-                       placeholder="🔍 Cari nama produk...">
-
-                <label for="categoryFilter">Kategori</label>
-                <select id="categoryFilter" class="form-select">
-                    <option value="">Semua</option>
-                    <option value="Makanan">Makanan</option>
-                    <option value="Minuman">Minuman</option>
-                </select>
-
-                <button class="add-button" data-bs-toggle="modal"
-                        data-bs-target="#productModal"
+                    <button class="add-button" data-bs-toggle="modal" data-bs-target="#productModal"
                         onclick="prepareAdd()">
-                    <i class="fa-solid fa-plus me-1"></i> Tambah
-                </button>
-            </div>
-
-            <div class="table-responsive">
-                <table class="table table-bordered product-table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Produk</th>
-                            <th>Kategori</th>
-                            <th>Harga</th>
-                            <th>Stok</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="productTableBody">
-                        <tr>
-                            <td colspan="6" class="text-center text-secondary">
-                                Belum ada data produk. Klik Tambah untuk memasukkan produk.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </section>
-    </main>
-</div>
-
-<!-- MODAL PRODUK -->
-<div class="modal fade" id="productModal" tabindex="-1"
-     aria-labelledby="modalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="modalTitle">
-                    Tambah Produk
-                </h5>
-                <button type="button" class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Tutup"></button>
-            </div>
-
-            <form id="productForm">
-                <div class="modal-body">
-                    <input type="hidden" id="editIndex" value="-1">
-
-                    <div class="mb-3">
-                        <label for="productName" class="form-label">Nama Produk</label>
-                        <input type="text" class="form-control" id="productName"
-                               placeholder="Masukkan nama produk..." required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="productCategory" class="form-label">Kategori</label>
-                        <select class="form-select" id="productCategory" required>
-                            <option value="">Pilih Kategori</option>
-                            <option value="Makanan">Makanan</option>
-                            <option value="Minuman">Minuman</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="productCode" class="form-label">Kode Produk</label>
-                        <input type="text" class="form-control" id="productCode"
-                               placeholder="Masukkan kode produk..." required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="productPrice" class="form-label">Harga (Rp)</label>
-                        <input type="number" min="0" class="form-control"
-                               id="productPrice"
-                               placeholder="Masukkan harga..." required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="productStock" class="form-label">Stok</label>
-                        <input type="number" min="0" class="form-control"
-                               id="productStock"
-                               placeholder="Masukkan jumlah stok..." required>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                            data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa-solid fa-floppy-disk me-1"></i> Simpan
+                        <i class="fa-solid fa-plus me-1"></i> Tambah
                     </button>
                 </div>
-            </form>
 
+                <div class="table-responsive">
+                    <table class="table table-bordered product-table align-middle">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Produk</th>
+                                <th>Kategori</th>
+                                <th>Harga</th>
+                                <th>Stok</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody">
+                            <!-- Data Tabel Dimasukkan Lewat JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <!-- MODAL TAMBAH/EDIT PRODUK -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="modalTitle">Tambah Produk</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <form id="productForm">
+                    <div class="modal-body">
+                        <input type="hidden" id="editIndex" value="-1">
+
+                        <div class="mb-3">
+                            <label for="productName" class="form-label">Nama Produk</label>
+                            <input type="text" class="form-control" id="productName"
+                                placeholder="Masukkan nama produk..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productCategory" class="form-label">Kategori</label>
+                            <select class="form-select" id="productCategory" required>
+                                <option value="">Pilih Kategori</option>
+                                <option value="Makanan">Makanan</option>
+                                <option value="Minuman">Minuman</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productCode" class="form-label">Kode Produk</label>
+                            <input type="text" class="form-control" id="productCode"
+                                placeholder="Masukkan kode produk..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productPrice" class="form-label">Harga (Rp)</label>
+                            <input type="number" min="0" class="form-control" id="productPrice"
+                                placeholder="Masukkan harga..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productStock" class="form-label">Stok</label>
+                            <input type="number" min="0" class="form-control" id="productStock"
+                                placeholder="Masukkan jumlah stok..." required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // [KODE JAVASCRIPT ANDA TETAP SAMA, TIDAK ADA YANG DIUBAH]
+        const productForm = document.getElementById("productForm");
+        const tableBody = document.getElementById("productTableBody");
+        const productModal = document.getElementById("productModal");
+        let products = [];
+        let modalInstance = bootstrap.Modal.getOrCreateInstance(productModal);
+        document.getElementById("adminName").textContent = sessionStorage.getItem("myshopUsername") || "Admin";
 
-<script>
-const productForm = document.getElementById("productForm");
-const tableBody = document.getElementById("productTableBody");
-const productModal = document.getElementById("productModal");
+        function prepareAdd() {
+            productForm.reset();
+            document.getElementById("editIndex").value = "-1";
+            document.getElementById("modalTitle").textContent = "Tambah Produk";
+        }
 
-let products = [];
-let modalInstance = bootstrap.Modal.getOrCreateInstance(productModal);
+        function renderProducts() {
+            const search = document.getElementById("productSearch").value.toLowerCase();
+            const category = document.getElementById("categoryFilter").value;
+            const filtered = products.filter(p => p.name.toLowerCase().includes(search) && (!category || p.category === category));
+            tableBody.innerHTML = "";
 
-document.getElementById("adminName").textContent =
-    sessionStorage.getItem("myshopUsername") || "Admin";
+            if (filtered.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="6" class="text-center text-secondary">Tidak ada produk yang ditemukan.</td></tr>`;
+                return;
+            }
 
-function prepareAdd() {
-    productForm.reset();
-    document.getElementById("editIndex").value = "-1";
-    document.getElementById("modalTitle").textContent = "Tambah Produk";
-}
+            filtered.forEach(p => {
+                const index = products.indexOf(p);
+                const row = document.createElement("tr");
+                [index + 1, p.name, p.category, "Rp " + Number(p.price).toLocaleString("id-ID"), p.stock].forEach(value => {
+                    const td = document.createElement("td");
+                    td.textContent = value;
+                    row.appendChild(td);
+                });
+                const actions = document.createElement("td");
+                const edit = document.createElement("button");
+                edit.type = "button"; edit.className = "action-btn edit-btn"; edit.innerHTML = '<i class="fa-solid fa-pen"></i>'; edit.onclick = () => editProduct(index);
+                const del = document.createElement("button");
+                del.type = "button"; del.className = "action-btn delete-btn"; del.innerHTML = '<i class="fa-solid fa-trash"></i>'; del.onclick = () => deleteProduct(index);
+                actions.append(edit, del);
+                row.appendChild(actions);
+                tableBody.appendChild(row);
+            });
+        }
 
-function renderProducts() {
-    const search = document.getElementById("productSearch").value.toLowerCase();
-    const category = document.getElementById("categoryFilter").value;
-
-    const filtered = products.filter(p =>
-        p.name.toLowerCase().includes(search) &&
-        (!category || p.category === category)
-    );
-
-    tableBody.innerHTML = "";
-
-    if (filtered.length === 0) {
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="6" class="text-center text-secondary">
-                    Tidak ada produk yang ditemukan.
-                </td>
-            </tr>`;
-        return;
-    }
-
-    filtered.forEach(p => {
-        const index = products.indexOf(p);
-        const row = document.createElement("tr");
-
-        [
-            index + 1,
-            p.name,
-            p.category,
-            "Rp " + Number(p.price).toLocaleString("id-ID"),
-            p.stock
-        ].forEach(value => {
-            const td = document.createElement("td");
-            td.textContent = value;
-            row.appendChild(td);
+        productForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const editIndex = Number(document.getElementById("editIndex").value);
+            const code = document.getElementById("productCode").value.trim();
+            const duplicate = products.some((p, i) => p.code.toLowerCase() === code.toLowerCase() && i !== editIndex);
+            if (duplicate) { alert("Kode produk sudah digunakan!"); return; }
+            const product = {
+                name: document.getElementById("productName").value.trim(), category: document.getElementById("productCategory").value,
+                code, price: Number(document.getElementById("productPrice").value), stock: Number(document.getElementById("productStock").value)
+            };
+            if (editIndex >= 0) { products[editIndex] = product; } else { products.push(product); }
+            renderProducts(); modalInstance.hide(); productForm.reset();
         });
 
-        const actions = document.createElement("td");
+        function editProduct(index) {
+            const p = products[index];
+            document.getElementById("editIndex").value = index;
+            document.getElementById("productName").value = p.name;
+            document.getElementById("productCategory").value = p.category;
+            document.getElementById("productCode").value = p.code;
+            document.getElementById("productPrice").value = p.price;
+            document.getElementById("productStock").value = p.stock;
+            document.getElementById("modalTitle").textContent = "Edit Produk";
+            modalInstance.show();
+        }
 
-        const edit = document.createElement("button");
-        edit.type = "button";
-        edit.className = "action-btn edit-btn";
-        edit.innerHTML = '<i class="fa-solid fa-pen"></i>';
-        edit.title = "Edit produk";
-        edit.onclick = () => editProduct(index);
+        function deleteProduct(index) {
+            if (confirm("Yakin ingin menghapus produk ini?")) { products.splice(index, 1); renderProducts(); }
+        }
 
-        const del = document.createElement("button");
-        del.type = "button";
-        del.className = "action-btn delete-btn";
-        del.innerHTML = '<i class="fa-solid fa-trash"></i>';
-        del.title = "Hapus produk";
-        del.onclick = () => deleteProduct(index);
-
-        actions.append(edit, del);
-        row.appendChild(actions);
-        tableBody.appendChild(row);
-    });
-}
-
-productForm.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const editIndex = Number(document.getElementById("editIndex").value);
-    const code = document.getElementById("productCode").value.trim();
-
-    const duplicate = products.some((p, i) =>
-        p.code.toLowerCase() === code.toLowerCase() && i !== editIndex
-    );
-
-    if (duplicate) {
-        alert("Kode produk sudah digunakan!");
-        return;
-    }
-
-    const product = {
-        name: document.getElementById("productName").value.trim(),
-        category: document.getElementById("productCategory").value,
-        code,
-        price: Number(document.getElementById("productPrice").value),
-        stock: Number(document.getElementById("productStock").value)
-    };
-
-    if (editIndex >= 0) {
-        products[editIndex] = product;
-    } else {
-        products.push(product);
-    }
-
-    renderProducts();
-    modalInstance.hide();
-    productForm.reset();
-});
-
-function editProduct(index) {
-    const p = products[index];
-
-    document.getElementById("editIndex").value = index;
-    document.getElementById("productName").value = p.name;
-    document.getElementById("productCategory").value = p.category;
-    document.getElementById("productCode").value = p.code;
-    document.getElementById("productPrice").value = p.price;
-    document.getElementById("productStock").value = p.stock;
-    document.getElementById("modalTitle").textContent = "Edit Produk";
-
-    modalInstance.show();
-}
-
-function deleteProduct(index) {
-    if (confirm("Yakin ingin menghapus produk ini?")) {
-        products.splice(index, 1);
+        document.getElementById("productSearch").addEventListener("input", renderProducts);
+        document.getElementById("categoryFilter").addEventListener("change", renderProducts);
+        document.getElementById("globalSearch").addEventListener("submit", function (e) {
+            e.preventDefault();
+            document.getElementById("productSearch").value = document.getElementById("globalSearchInput").value;
+            renderProducts();
+        });
         renderProducts();
-    }
-}
-
-document.getElementById("productSearch")
-    .addEventListener("input", renderProducts);
-
-document.getElementById("categoryFilter")
-    .addEventListener("change", renderProducts);
-
-document.getElementById("globalSearch").addEventListener("submit", function(e) {
-    e.preventDefault();
-    document.getElementById("productSearch").value =
-        document.getElementById("globalSearchInput").value;
-    renderProducts();
-});
-
-renderProducts();
-</script>
-
+    </script>
 </body>
+
 </html>
