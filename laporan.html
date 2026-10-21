@@ -17,62 +17,71 @@
 <body>
 
     <!-- HEADER / NAVBAR (Sesuai Desain Utama) -->
-   <!-- HEADER / NAVBAR -->
-<nav class="navbar navbar-expand navbar-dark topbar">
+    <!-- HEADER / NAVBAR -->
+    <nav class="navbar navbar-expand navbar-dark topbar">
 
-    <a href="dashboard.html" class="brand">
-        <i class="fa-solid fa-store"></i>
-        Aplikasi Penjualan Sederhana Warung/Kantin
-    </a>
+        <a href="dashboard.html" class="brand">
+            <i class="fa-solid fa-store"></i>
+            Aplikasi Penjualan Sederhana Warung/Kantin
+        </a>
 
-    <!-- PENCARIAN -->
-    <form class="search-form" id="globalSearch">
-        <input type="search" class="form-control" id="globalSearchInput" placeholder="Cari transaksi, produk, atau lainnya" aria-label="Cari">
-        <button type="submit" class="btn">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-    </form>
+        <!-- PENCARIAN -->
+        <form class="search-form" id="globalSearch">
+            <input type="search" class="form-control" id="globalSearchInput"
+                placeholder="Cari transaksi, produk, atau lainnya" aria-label="Cari">
+            <button type="submit" class="btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
 
-    <!-- ADMIN -->
-    <ul class="navbar-nav admin-dropdown">
-        <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <i class="fa-solid fa-circle-user me-1"></i>
-                <span id="adminName">Admin</span>
-            </a>
+        <!-- ADMIN -->
+        <ul class="navbar-nav admin-dropdown">
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fa-solid fa-circle-user me-1"></i>
+                    <span id="adminName">Admin</span>
+                </a>
 
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#profil">Profil Saya</a></li>
-                <li><a class="dropdown-item" href="#pengaturan">Pengaturan</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="halamanlogin.html">Logout</a></li>
-            </ul>
-        </li>
-    </ul>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#profil">Profil Saya</a></li>
+                    <li><a class="dropdown-item" href="#pengaturan">Pengaturan</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
 
-</nav>
+    </nav>
     <div class="page-layout d-flex flex-column flex-md-row">
 
         <!-- SIDEBAR -->
         <aside class="sidebar">
             <nav class="nav flex-column">
                 <a class="nav-link" href="dashboard.html">
-                    <i class="fa-solid fa-house"></i> Dashboard
+                    <i class="fa-solid fa-house"></i>
+                    <span>Dashboard</span>
                 </a>
                 <a class="nav-link" href="produk.html">
-                    <i class="fa-solid fa-layer-group"></i> Produk
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Produk</span>
                 </a>
                 <a class="nav-link" href="kasir.html">
-                    <i class="fa-solid fa-bag-shopping"></i> Kasir/Penjualan
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Kasir/Penjualan</span>
                 </a>
                 <a class="nav-link" href="riwayat.html">
-                    <i class="fa-regular fa-clock"></i> Riwayat
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Riwayat</span>
                 </a>
                 <a class="nav-link active" href="laporan.html">
-                    <i class="fa-solid fa-book"></i> Laporan
+                    <i class="fa-solid fa-book"></i>
+                    <span>Laporan</span>
                 </a>
-                <a class="nav-link" href="halamanlogin.html">
-                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                <a class="nav-link" href="login.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
                 </a>
             </nav>
         </aside>
