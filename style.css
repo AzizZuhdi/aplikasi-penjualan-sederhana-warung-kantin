@@ -177,39 +177,67 @@ body {
     margin-left: 10px;
 }
 
-/* TABEL PRODUK */
+/* TABEL STOK RENDAH (Pengganti Tabel Produk) */
+/* TABEL STOK RENDAH */
 .product-card {
-    background: white;
-    border: 1px solid #dedede;
-    border-radius: 7px;
+    background: #ffffff;
+    border: 1px solid #777;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #000;
+    
+    /* Memanjangkan tabel agar sejajar dengan 2 kartu di atasnya */
+    max-width: 876px;
+    width: 100%;
 }
 
 .product-header {
-    padding: 15px 23px;
-    border-bottom: 1px solid #dedede;
-    font-size: 23px;
+    padding: 25px 23px 10px;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center; /* Teks di tengah */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.product-header i {
+    color: #333; /* Warna ikon peringatan gelap */
+    font-size: 32px;
+}
+
+/* Garis putih di bawah judul */
+.white-line {
+    border: none;
+    border-top: 3px solid white;
+    width: 85%;
+    margin: 10px auto 25px;
+    opacity: 1;
 }
 
 .product-body {
-    padding: 18px 20px;
+    padding: 0 20px 30px 20px;
 }
 
 .table {
     margin: 0;
 }
 
-.table thead th {
-    background: #d6e5ff;
-    padding: 14px 12px;
-    font-size: 16px;
-    white-space: nowrap;
+/* Kustomisasi tabel agar background menyatu dengan abu-abu */
+.custom-table th,
+.custom-table td {
+    background-color: transparent !important;
+    border: 1px solid #444 !important; /* Garis tabel hitam/abu gelap */
+    padding: 15px 12px;
+    font-size: 17px;
+    text-align: center; /* Memosisikan semua teks di tengah kolom */
+    color: #171717;
 }
 
-.table tbody td {
-    padding: 13px 12px;
-    font-size: 16px;
+.custom-table thead th {
+    font-weight: normal; 
 }
 
 /* RESPONSIVE */
