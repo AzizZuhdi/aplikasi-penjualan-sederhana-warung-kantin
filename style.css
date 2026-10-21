@@ -9,7 +9,9 @@ body {
     color: #171717;
 }
 
-/* HEADER */
+/* ------------------------------------- */
+/* HEADER / NAVBAR UTAMA                 */
+/* ------------------------------------- */
 .topbar {
     height: 68px;
     background: #174f47;
@@ -69,13 +71,18 @@ body {
     white-space: nowrap;
 }
 
-/* LAYOUT */
+.admin-dropdown .dropdown-menu {
+    position: absolute;
+}
+
+/* ------------------------------------- */
+/* LAYOUT & SIDEBAR                      */
+/* ------------------------------------- */
 .page-layout {
     display: flex;
     min-height: calc(100vh - 68px);
 }
 
-/* SIDEBAR */
 .sidebar {
     width: 282px;
     flex-shrink: 0;
@@ -114,7 +121,6 @@ body {
     font-weight: bold;
 }
 
-/* KONTEN UTAMA */
 .main-content {
     flex: 1;
     min-width: 0;
@@ -134,7 +140,9 @@ body {
     margin-bottom: 29px;
 }
 
-/* KARTU RINGKASAN */
+/* ------------------------------------- */
+/* KOMPONEN DASHBOARD                    */
+/* ------------------------------------- */
 .summary-row {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 430px));
@@ -177,8 +185,7 @@ body {
     margin-left: 10px;
 }
 
-/* TABEL STOK RENDAH (Pengganti Tabel Produk) */
-/* TABEL STOK RENDAH */
+/* TABEL STOK RENDAH (Dashboard) */
 .product-card {
     background: #ffffff;
     border: 1px solid #777;
@@ -186,8 +193,6 @@ body {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #000;
-    
-    /* Memanjangkan tabel agar sejajar dengan 2 kartu di atasnya */
     max-width: 876px;
     width: 100%;
 }
@@ -196,7 +201,7 @@ body {
     padding: 25px 23px 10px;
     font-size: 28px;
     font-weight: bold;
-    text-align: center; /* Teks di tengah */
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -204,11 +209,10 @@ body {
 }
 
 .product-header i {
-    color: #333; /* Warna ikon peringatan gelap */
+    color: #333;
     font-size: 32px;
 }
 
-/* Garis putih di bawah judul */
 .white-line {
     border: none;
     border-top: 3px solid white;
@@ -225,14 +229,13 @@ body {
     margin: 0;
 }
 
-/* Kustomisasi tabel agar background menyatu dengan abu-abu */
 .custom-table th,
 .custom-table td {
     background-color: transparent !important;
-    border: 1px solid #444 !important; /* Garis tabel hitam/abu gelap */
+    border: 1px solid #444 !important;
     padding: 15px 12px;
     font-size: 17px;
-    text-align: center; /* Memosisikan semua teks di tengah kolom */
+    text-align: center;
     color: #171717;
 }
 
@@ -240,92 +243,197 @@ body {
     font-weight: normal; 
 }
 
-/* RESPONSIVE */
+/* ------------------------------------- */
+/* KOMPONEN HALAMAN PRODUK               */
+/* ------------------------------------- */
+.product-panel {
+    border: 2px solid #343b38;
+    border-radius: 38px;
+    padding: 24px;
+    min-height: 460px;
+    background-color: #fff;
+}
+
+.panel-heading {
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.toolbar input,
+.toolbar select {
+    border: 2px solid #56645e;
+    border-radius: 6px;
+    height: 42px;
+}
+
+.toolbar input {
+    width: 230px;
+}
+
+.toolbar select {
+    width: 145px;
+}
+
+.add-button {
+    margin-left: auto;
+    background: #0d6efd;
+    border: none;
+    color: white;
+    border-radius: 7px;
+    padding: 10px 18px;
+}
+
+.add-button:hover {
+    background: #084fbd;
+}
+
+.product-table {
+    min-width: 580px;
+    margin-bottom: 0;
+}
+
+.product-table thead th {
+    background: #d5e5ff;
+    padding: 14px 10px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.product-table td {
+    padding: 12px 10px;
+    vertical-align: middle;
+}
+
+.action-btn {
+    border: none;
+    border-radius: 5px;
+    padding: 6px 9px;
+    margin: 2px;
+}
+
+.edit-btn {
+    background: #d7eaff;
+    color: #0875dc;
+}
+
+.delete-btn {
+    background: #ffe0e4;
+    color: #dc3545;
+}
+
+/* MODAL TAMBAH/EDIT */
+.modal-content {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: #0d6efd;
+    color: white;
+    padding: 18px 24px;
+}
+
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-body label {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.modal-body .form-control,
+.modal-body .form-select {
+    border: 1px solid #9daebd;
+    border-radius: 7px;
+    min-height: 43px;
+}
+
+.modal-footer {
+    padding: 16px 24px;
+}
+
+
+/* ------------------------------------- */
+/* RESPONSIVE (HP & TABLET)              */
+/* ------------------------------------- */
 @media (max-width: 1100px) {
-    .brand {
-        font-size: 18px;
-    }
-
-    .topbar {
-        gap: 12px;
-        padding: 0 12px;
-    }
-
-    .sidebar {
-        width: 245px;
-    }
-
-    .main-content {
-        padding: 25px 20px;
-    }
-
-    .summary-row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+    .brand { font-size: 18px; }
+    .topbar { gap: 12px; padding: 0 12px; }
+    .sidebar { width: 245px; }
+    .main-content { padding: 25px 20px; }
+    .summary-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 767px) {
+    /* Navbar HP */
     .topbar {
         height: auto;
         min-height: 68px;
         flex-wrap: wrap;
         padding: 12px;
     }
-
     .brand {
         white-space: normal;
         flex: 1 1 75%;
     }
-
     .search-form {
         max-width: none;
         width: 100%;
         order: 3;
     }
-
     .admin-dropdown {
         margin-left: 0;
     }
 
-    .page-layout {
-        display: block;
-    }
-
+    /* Layout & Sidebar HP */
+    .page-layout { display: block; }
     .sidebar {
         width: 100%;
         min-height: auto;
         border-right: none;
         border-bottom: 1px solid #d2e6df;
+        padding: 10px;
     }
-
     .sidebar .nav-link {
+        display: inline-flex;
         min-height: 48px;
+        padding: 10px;
+        font-size: 15px;
     }
-
     .sidebar .nav-link i {
-        font-size: 22px;
+        font-size: 20px;
+        width: auto;
     }
+    
+    .main-content { padding: 22px 15px; }
+    .page-title { font-size: 30px; }
 
-    .main-content {
-        padding: 22px 15px;
-    }
+    /* Dashboard HP */
+    .summary-row { grid-template-columns: 1fr; }
+    .summary-card { min-height: 125px; }
+    .summary-value { font-size: 30px; }
 
-    .page-title {
-        font-size: 30px;
+    /* Produk Panel HP */
+    .product-panel {
+        padding: 16px;
+        border-radius: 22px;
     }
-
-    .summary-row {
-        grid-template-columns: 1fr;
-    }
-
-    .summary-card {
-        min-height: 125px;
-    }
-
-    .summary-value {
-        font-size: 30px;
-    }
-}
-.admin-dropdown .dropdown-menu {
-    position: absolute;
+    .toolbar { align-items: stretch; }
+    .toolbar input, .toolbar select { width: 100%; }
+    .add-button { margin-left: 0; }
 }
