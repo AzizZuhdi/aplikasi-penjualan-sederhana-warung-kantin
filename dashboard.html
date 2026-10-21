@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,235 +18,235 @@
 
 <body>
 
-<!-- HEADER -->
-<nav class="navbar navbar-expand navbar-dark topbar">
+    <!-- HEADER -->
+    <nav class="navbar navbar-expand navbar-dark topbar">
 
-    <a href="dashboard.html" class="brand">
-        <i class="fa-solid fa-store"></i>
-        Aplikasi Penjualan Sederhana Warung/Kantin
-    </a>
+        <a href="dashboard.html" class="brand">
+            <i class="fa-solid fa-store"></i>
+            Aplikasi Penjualan Sederhana Warung/Kantin
+        </a>
 
-    <!-- PENCARIAN -->
-    <form class="search-form" id="searchForm">
-        <input
-            type="search"
-            class="form-control"
-            id="searchInput"
-            placeholder="Cari transaksi, produk, atau lainnya"
-            aria-label="Cari produk">
+        <!-- PENCARIAN -->
+        <form class="search-form" id="searchForm">
+            <input type="search" class="form-control" id="searchInput"
+                placeholder="Cari transaksi, produk, atau lainnya" aria-label="Cari produk">
 
-        <button type="submit" class="btn">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-    </form>
+            <button type="submit" class="btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
 
-    <!-- ADMIN -->
-    <ul class="navbar-nav admin-dropdown">
-        <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle"
-               data-bs-toggle="dropdown">
-                <i class="fa-solid fa-circle-user me-1"></i>
-                <span id="adminName">Admin</span>
-            </a>
+        <!-- ADMIN -->
+        <ul class="navbar-nav admin-dropdown">
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fa-solid fa-circle-user me-1"></i>
+                    <span id="adminName">Admin</span>
+                </a>
 
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li>
-                    <a class="dropdown-item" href="#profil">Profil Saya</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#pengaturan">Pengaturan</a>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                    <a class="dropdown-item" href="halamanlogin.html">Logout</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a class="dropdown-item" href="#profil">Profil Saya</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#pengaturan">Pengaturan</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="halamanlogin.html">Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
 
-</nav>
+    </nav>
 
-<!-- SIDEBAR DAN KONTEN -->
-<div class="page-layout">
+    <!-- SIDEBAR DAN KONTEN -->
+    <div class="page-layout">
 
-    <!-- SIDEBAR KIRI -->
-    <aside class="sidebar">
+        <!-- SIDEBAR KIRI -->
+        <aside class="sidebar">
 
-        <nav class="nav flex-column">
+            <nav class="nav flex-column">
 
-            <a class="nav-link active" href="#ringkasan">
-                <i class="fa-solid fa-house"></i>
-                <span>Dashboard</span>
-            </a>
+                <a class="nav-link active" href="#ringkasan">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Dashboard</span>
+                </a>
 
-            <a class="nav-link" href="produk.html">
-                <i class="fa-solid fa-layer-group"></i>
-                <span>Produk</span>
-            </a>
+                <a class="nav-link" href="produk.html">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Produk</span>
+                </a>
 
-            <a class="nav-link" href="kasir.html">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span>Kasir/Penjualan</span>
-            </a>
+                <a class="nav-link" href="kasir.html">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Kasir/Penjualan</span>
+                </a>
 
-            <a class="nav-link" href="riwayat.html">
-                <i class="fa-regular fa-clock"></i>
-                <span>Riwayat</span>
-            </a>
+                <a class="nav-link" href="riwayat.html">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Riwayat</span>
+                </a>
 
-            <a class="nav-link" href="laporan.html">
-                <i class="fa-solid fa-book"></i>
-                <span>Laporan</span>
-            </a>
+                <a class="nav-link" href="laporan.html">
+                    <i class="fa-solid fa-book"></i>
+                    <span>Laporan</span>
+                </a>
 
-            <a class="nav-link" href="halamanlogin.html">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                <span>Logout</span>
-            </a>
+                <a class="nav-link" href="halamanlogin.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
 
-        </nav>
+            </nav>
 
-    </aside>
+        </aside>
 
-    <!-- KONTEN KANAN -->
-    <main class="main-content">
+        <!-- KONTEN KANAN -->
+        <main class="main-content">
 
-        <!-- JUDUL DASHBOARD -->
-        <section id="ringkasan">
-            <h1 class="page-title">Dashboard</h1>
-            <p class="breadcrumb-text">Menu &gt; Dashboard</p>
-        </section>
+            <!-- JUDUL DASHBOARD -->
+            <section id="ringkasan">
+                <h1 class="page-title">Dashboard</h1>
+                <p class="breadcrumb-text">Menu &gt; Dashboard</p>
+            </section>
 
-        <!-- KARTU RINGKASAN -->
-        <section class="summary-row">
+            <!-- KARTU RINGKASAN -->
+            <section class="summary-row">
 
-            <div class="summary-card sales-card">
-                <div>
-                    <p class="summary-label">Omzet hari ini</p>
-                    <h2 class="summary-value" id="totalOmzet">Rp.</h2>
+                <div class="summary-card sales-card">
+                    <div>
+                        <p class="summary-label">Omzet hari ini</p>
+                        <h2 class="summary-value" id="totalOmzet">Rp.</h2>
+                    </div>
+
+                    <i class="fa-solid fa-box summary-icon"></i>
                 </div>
 
-                <i class="fa-solid fa-box summary-icon"></i>
-            </div>
+                <div class="summary-card transaction-card">
+                    <div>
+                        <p class="summary-label">Jumlah Transaksi</p>
+                        <h2 class="summary-value" id="totalTransaksi">
+                            0 Transaksi
+                        </h2>
+                    </div>
 
-            <div class="summary-card transaction-card">
-                <div>
-                    <p class="summary-label">Jumlah Transaksi</p>
-                    <h2 class="summary-value" id="totalTransaksi">
-                        0 Transaksi
-                    </h2>
+                    <i class="fa-solid fa-cart-shopping summary-icon"></i>
                 </div>
 
-                <i class="fa-solid fa-cart-shopping summary-icon"></i>
-            </div>
+            </section>
 
-        </section>
+            <!-- TABEL STOK RENDAH -->
+            <section class="product-card" id="produk">
 
-        <!-- TABEL DAFTAR PRODUK -->
-        <section class="product-card" id="produk">
-
-            <div class="product-header">
-                Daftar Produk
-            </div>
-
-            <div class="product-body">
-                <div class="table-responsive">
-
-                    <table class="table table-striped table-hover align-middle">
-
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Kode Produk</th>
-                                <th>Nama Produk</th>
-                                <th>Sisa stok</th>
-                            </tr>
-                        </thead>
-
-                        <tbody id="productTable">
-
-                            <tr>
-                                <td>1</td>
-                                <td>MRN10</td>
-                                <td>Donat</td>
-                                <td>
-                                    <span class="badge text-bg-success">6</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>2</td>
-                                <td>MNM09</td>
-                                <td>Teh Pucuk</td>
-                                <td>
-                                    <span class="badge text-bg-warning">2</span>
-                                </td>
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
+                <!-- Judul dan Ikon -->
+                <div class="product-header">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Stok rendah
                 </div>
-            </div>
 
-        </section>
+                <!-- Garis Putih Pemisah -->
+                <hr class="white-line">
 
-    </main>
-</div>
+                <div class="product-body">
+                    <div class="table-responsive px-2">
 
-<!-- JAVASCRIPT BOOTSTRAP -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+                        <table class="table table-bordered custom-table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode produk</th>
+                                    <th>Nama produk</th>
+                                    <th>Sisa stok</th>
+                                </tr>
+                            </thead>
 
-<script>
-    // Nama admin
-    const username =
-        sessionStorage.getItem("myshopUsername") || "Admin";
+                            <tbody id="productTable">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <!-- Contoh baris kosong seperti di gambar -->
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-    document.getElementById("adminName").textContent = username;
+                    </div>
+                </div>
 
-    // Pencarian produk
-    const searchForm = document.getElementById("searchForm");
-    const searchInput = document.getElementById("searchInput");
+            </section>
 
-    searchForm.addEventListener("submit", function(event) {
-        event.preventDefault();
+        </main>
+    </div>
 
-        const keyword = searchInput.value.trim().toLowerCase();
-        const rows = document.querySelectorAll("#productTable tr");
+    <!-- JAVASCRIPT BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-        rows.forEach(function(row) {
-            row.style.display =
-                row.textContent.toLowerCase().includes(keyword)
-                ? ""
-                : "none";
+    <script>
+        // Nama admin
+        const username =
+            sessionStorage.getItem("myshopUsername") || "Admin";
+
+        document.getElementById("adminName").textContent = username;
+
+        // Pencarian produk
+        const searchForm = document.getElementById("searchForm");
+        const searchInput = document.getElementById("searchInput");
+
+        searchForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const keyword = searchInput.value.trim().toLowerCase();
+            const rows = document.querySelectorAll("#productTable tr");
+
+            rows.forEach(function (row) {
+                row.style.display =
+                    row.textContent.toLowerCase().includes(keyword)
+                        ? ""
+                        : "none";
+            });
         });
-    });
 
-    // Tampilkan semua produk jika pencarian kosong
-    searchInput.addEventListener("input", function() {
-        if (this.value.trim() === "") {
-            document.querySelectorAll("#productTable tr")
-                .forEach(function(row) {
-                    row.style.display = "";
-                });
-        }
-    });
-
-    // Status menu sidebar
-    document.querySelectorAll(".sidebar .nav-link").forEach(function(link) {
-        link.addEventListener("click", function() {
-            if (this.getAttribute("href").startsWith("#")) {
-                document.querySelectorAll(".sidebar .nav-link")
-                    .forEach(function(item) {
-                        item.classList.remove("active");
+        // Tampilkan semua produk jika pencarian kosong
+        searchInput.addEventListener("input", function () {
+            if (this.value.trim() === "") {
+                document.querySelectorAll("#productTable tr")
+                    .forEach(function (row) {
+                        row.style.display = "";
                     });
-
-                this.classList.add("active");
             }
         });
-    });
-</script>
+
+        // Status menu sidebar
+        document.querySelectorAll(".sidebar .nav-link").forEach(function (link) {
+            link.addEventListener("click", function () {
+                if (this.getAttribute("href").startsWith("#")) {
+                    document.querySelectorAll(".sidebar .nav-link")
+                        .forEach(function (item) {
+                            item.classList.remove("active");
+                        });
+
+                    this.classList.add("active");
+                }
+            });
+        });
+    </script>
 
 </body>
+
 </html>
