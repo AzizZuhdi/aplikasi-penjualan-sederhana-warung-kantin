@@ -240,7 +240,7 @@ body {
 }
 
 .custom-table thead th {
-    font-weight: normal; 
+    font-weight: normal;
 }
 
 /* ------------------------------------- */
@@ -367,19 +367,180 @@ body {
     padding: 16px 24px;
 }
 
+/* ------------------------------------- */
+/* KOMPONEN HALAMAN KASIR                */
+/* ------------------------------------- */
+.cashier-panel {
+    background: #e3f8f1;
+    border: 2px solid #303b38;
+    border-radius: 30px;
+    padding: 24px;
+    min-height: 490px;
+}
+
+.input-panel {
+    background: #b9b9b9;
+    border-radius: 28px;
+    padding: 22px;
+    height: 100%;
+}
+
+.input-panel h3,
+.cart-panel h3 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.input-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 16px;
+}
+
+.input-card h4 {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.form-control,
+.form-select {
+    border: 1px solid #8b9994;
+    min-height: 44px;
+}
+
+.quantity-input {
+    width: 95px;
+}
+
+.quantity-button {
+    width: 44px;
+    height: 42px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.subtotal-text {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.add-cart-button {
+    width: 100%;
+    border: 3px solid #151515;
+    border-radius: 12px;
+    background: #fff;
+    font-size: 21px;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 18px;
+}
+
+.add-cart-button:hover {
+    background: #d8eaff;
+}
+
+.cart-panel {
+    background: white;
+    border: 2px solid #303b38;
+    border-radius: 28px;
+    padding: 22px;
+    height: 100%;
+}
+
+.cart-title {
+    text-align: center;
+    font-size: 27px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.cart-table {
+    min-width: 500px;
+}
+
+.cart-table th {
+    background: #dedede;
+    border: 2px solid #222;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.cart-table td {
+    border: 1px solid #aaa;
+    vertical-align: middle;
+}
+
+.cart-table .empty-row td {
+    height: 38px;
+}
+
+.cart-summary {
+    text-align: right;
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.payment-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
+    font-size: 19px;
+}
+
+.payment-row input {
+    max-width: 180px;
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.cart-actions .btn {
+    font-weight: bold;
+    padding: 10px 18px;
+}
 
 /* ------------------------------------- */
 /* RESPONSIVE (HP & TABLET)              */
 /* ------------------------------------- */
 @media (max-width: 1100px) {
-    .brand { font-size: 18px; }
-    .topbar { gap: 12px; padding: 0 12px; }
-    .sidebar { width: 245px; }
-    .main-content { padding: 25px 20px; }
-    .summary-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .brand {
+        font-size: 18px;
+    }
+
+    .topbar {
+        gap: 12px;
+        padding: 0 12px;
+    }
+
+    .sidebar {
+        width: 245px;
+    }
+
+    .main-content {
+        padding: 25px 20px;
+    }
+
+    .summary-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 767px) {
+
     /* Navbar HP */
     .topbar {
         height: auto;
@@ -387,21 +548,27 @@ body {
         flex-wrap: wrap;
         padding: 12px;
     }
+
     .brand {
         white-space: normal;
         flex: 1 1 75%;
     }
+
     .search-form {
         max-width: none;
         width: 100%;
         order: 3;
     }
+
     .admin-dropdown {
         margin-left: 0;
     }
 
     /* Layout & Sidebar HP */
-    .page-layout { display: block; }
+    .page-layout {
+        display: block;
+    }
+
     .sidebar {
         width: 100%;
         min-height: auto;
@@ -409,31 +576,66 @@ body {
         border-bottom: 1px solid #d2e6df;
         padding: 10px;
     }
+
     .sidebar .nav-link {
         display: inline-flex;
         min-height: 48px;
         padding: 10px;
         font-size: 15px;
     }
+
     .sidebar .nav-link i {
         font-size: 20px;
         width: auto;
     }
-    
-    .main-content { padding: 22px 15px; }
-    .page-title { font-size: 30px; }
+
+    .main-content {
+        padding: 22px 15px;
+    }
+
+    .page-title {
+        font-size: 30px;
+    }
 
     /* Dashboard HP */
-    .summary-row { grid-template-columns: 1fr; }
-    .summary-card { min-height: 125px; }
-    .summary-value { font-size: 30px; }
+    .summary-row {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-card {
+        min-height: 125px;
+    }
+
+    .summary-value {
+        font-size: 30px;
+    }
 
     /* Produk Panel HP */
     .product-panel {
         padding: 16px;
         border-radius: 22px;
     }
-    .toolbar { align-items: stretch; }
-    .toolbar input, .toolbar select { width: 100%; }
-    .add-button { margin-left: 0; }
+
+    .toolbar {
+        align-items: stretch;
+    }
+
+    .toolbar input,
+    .toolbar select {
+        width: 100%;
+    }
+
+    .add-button {
+        margin-left: 0;
+    }
+
+    /* Kasir Panel HP */
+    .cashier-panel {
+        padding: 14px;
+    }
+
+    .input-panel,
+    .cart-panel {
+        padding: 16px;
+    }
 }
