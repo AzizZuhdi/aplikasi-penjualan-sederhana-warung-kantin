@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Riwayat Transaksi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #e3f8f1;
+            color: #151515;
+            font-family: Arial, sans-serif;
+        }
+
+        /* NAVBAR */
+        .topbar {
+            background: #174f46;
+            min-height: 72px;
+        }
+
+        .navbar-brand {
+            font-size: 27px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .search-input {
+            height: 52px;
+            min-width: 0;
+        }
+
+        .search-button {
+            height: 52px;
+            width: 72px;
+            color: #41c9a9;
+            border: 1px solid #328a78;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 320px;
+            flex-shrink: 0;
+            min-height: calc(100vh - 72px);
+            background: #e3f8f1;
+            border-right: 1px solid #c8e3da;
+            padding: 28px 16px;
+        }
+
+        .sidebar .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 20px;
+            margin-bottom: 8px;
+            color: #111;
+            font-size: 20px;
+            border-radius: 14px;
+        }
+
+        .sidebar .nav-link i {
+            width: 28px;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background: #cfe5fa;
+            color: #1763a0;
+            font-weight: bold;
+        }
+
+        /* KONTEN */
+        .main-content {
+            flex: 1;
+            min-width: 0;
+            padding: 32px;
+        }
+
+        .page-title {
+            font-size: 44px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .breadcrumb-text {
+            font-size: 20px;
+            color: #788d88;
+            margin-bottom: 28px;
+        }
+
+        /* PANEL DAFTAR TRANSAKSI */
+        .history-panel {
+            background: #e3f8f1;
+            border: 2px solid #8eaaa6;
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .panel-heading {
+            font-size: 28px;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .filter-input {
+            background: #cfe5fa;
+            border: none;
+            border-radius: 10px;
+            min-height: 46px;
+            font-size: 18px;
+        }
+
+        .filter-button {
+            background: #9dc8f4;
+            color: #111;
+            border: none;
+            border-radius: 10px;
+            min-height: 46px;
+            font-size: 18px;
+            padding: 8px 26px;
+        }
+
+        .filter-button:hover {
+            background: #7db5ed;
+        }
+
+        .history-table {
+            margin-top: 18px;
+            min-width: 650px;
+        }
+
+        .history-table thead th {
+            background: #929997;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            font-weight: normal;
+            border: 1px solid #71827e;
+            padding: 10px;
+            white-space: nowrap;
+        }
+
+        .history-table tbody td {
+            background: #d9f1f8;
+            border: 1px solid #8ca7a3;
+            padding: 12px;
+            vertical-align: middle;
+        }
+
+        .history-table tbody tr {
+            cursor: pointer;
+        }
+
+        .history-table tbody tr:hover td {
+            background: #c5e6f5;
+        }
+
+        /* DETAIL TRANSAKSI */
+        .detail-panel {
+            background: #e9e9e9;
+            border: 2px solid #8eaaa6;
+            border-radius: 24px;
+            padding: 24px;
+            max-width: 720px;
+        }
+
+        .detail-heading {
+            font-size: 27px;
+            font-weight: normal;
+            margin-bottom: 4px;
+        }
+
+        .detail-date {
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .detail-subheading {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .detail-table {
+            max-width: 500px;
+            min-width: 350px;
+        }
+
+        .detail-table th {
+            background: #929997;
+            color: white;
+            font-weight: normal;
+            border: 1px solid #71827e;
+            text-align: center;
+        }
+
+        .detail-table td {
+            background: #e9e9e9;
+            border: 1px solid #8ca7a3;
+        }
+
+        .total-payment {
+            text-align: right;
+            font-size: 25px;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+
+        .back-button {
+            background: #9dc8f4;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 28px;
+            font-size: 18px;
+        }
+
+        .back-button:hover {
+            background: #7db5ed;
+        }
+
+        @media (max-width: 1100px) {
+            .sidebar {
+                width: 240px;
+            }
+
+            .navbar-brand {
+                font-size: 19px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .sidebar {
+                width: 100%;
+                min-height: auto;
+                padding: 10px;
+            }
+
+            .sidebar .nav-link {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .sidebar .nav-link i {
+                font-size: 20px;
+            }
+
+            .main-content {
+                padding: 16px;
+            }
+
+            .page-title {
+                font-size: 32px;
+            }
+
+            .history-panel,
+            .detail-panel {
+                padding: 16px;
+            }
+
+            .filter-area {
+                margin-top: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark topbar px-3">
+    <div class="container-fluid gap-3 flex-nowrap">
+        <a class="navbar-brand d-flex align-items-center"
+           href="dashboard.html">
+            <i class="fa-solid fa-store me-3"></i>
+            Aplikasi Penjualan Sederhana Warung/Kantin
+        </a>
+
+        <form class="d-flex flex-grow-1"
+              style="max-width:620px"
+              id="globalSearchForm">
+            <input class="form-control search-input"
+                   id="globalSearch"
+                   type="search"
+                   placeholder="Cari transaksi, produk, atau lainnya">
+            <button class="btn search-button ms-2" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+
+        <div class="dropdown ms-auto">
+            <button class="btn text-white dropdown-toggle"
+                    data-bs-toggle="dropdown">
+                <i class="fa-solid fa-circle-user me-2"></i>
+                <span id="adminName">Admin</span>
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                    <a class="dropdown-item" href="dashboard.html">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="halamanlogin.html">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="d-flex flex-column flex-md-row">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <nav class="nav flex-column">
+            <a class="nav-link" href="dashboard.html">
+                <i class="fa-solid fa-house"></i> Dashboard
+            </a>
+
+            <a class="nav-link" href="produk.html">
+                <i class="fa-solid fa-layer-group"></i> Produk
+            </a>
+
+            <a class="nav-link" href="kasir.html">
+                <i class="fa-solid fa-bag-shopping"></i>
+                Kasir/Penjualan
+            </a>
+
+            <a class="nav-link active" href="riwayat.html">
+                <i class="fa-regular fa-clock"></i> Riwayat
+            </a>
+
+            <a class="nav-link" href="laporan.html">
+                <i class="fa-solid fa-book"></i> Laporan
+            </a>
+
+            <a class="nav-link" href="halamanlogin.html">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        </nav>
+    </aside>
+
+    <!-- KONTEN RIWAYAT -->
+    <main class="main-content">
+
+        <h1 class="page-title">Riwayat Transaksi</h1>
+        <p class="breadcrumb-text">
+            Menu &gt; Riwayat Transaksi
+        </p>
+
+        <!-- DAFTAR TRANSAKSI -->
+        <section class="history-panel">
+            <div class="row align-items-center g-3">
+                <div class="col-lg-5">
+                    <h2 class="panel-heading">Daftar Transaksi</h2>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="d-flex flex-wrap gap-2 justify-content-lg-end filter-area">
+
+                        <input type="search"
+                               id="historySearch"
+                               class="form-control filter-input"
+                               style="max-width:320px"
+                               placeholder="🔍 Cari transaksi">
+
+                        <select id="dateFilter"
+                                class="form-select filter-input"
+                                style="width:155px">
+                            <option value="all">Semua tanggal</option>
+                            <option value="today">Hari ini</option>
+                            <option value="week">7 hari terakhir</option>
+                            <option value="month">Bulan ini</option>
+                        </select>
+
+                        <button class="btn filter-button" id="filterButton">
+                            Filter
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table history-table mb-0">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>No Transaksi</th>
+                            <th>Tanggal transaksi</th>
+                            <th>Total</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- DETAIL TRANSAKSI -->
+        <section class="detail-panel" id="detailPanel">
+            <h2 class="detail-heading">
+                Detail Transaksi: <span id="detailNumber">Pilih transaksi</span>
+            </h2>
+
+            <p class="detail-date">
+                Tgl: <span id="detailDate">-</span>
+            </p>
+
+            <h3 class="detail-subheading">Detail item</h3>
+
+            <div class="table-responsive">
+                <table class="table detail-table mb-0">
+                    <thead>
+                        <tr>
+                            <th>Nama Produk</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detailBody">
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                Belum ada transaksi dipilih
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="total-payment">
+                Total Bayar: <span id="detailTotal">Rp. 0</span>
+            </div>
+
+            <div class="mt-4">
+                <button class="btn back-button" id="backButton">
+                    <i class="fa-solid fa-arrow-left me-2"></i>Kembali
+                </button>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.getElementById("adminName").textContent =
+        sessionStorage.getItem("myshopUsername") || "Admin";
+
+    const rupiah = value =>
+        "Rp. " + Number(value || 0).toLocaleString("id-ID");
+
+    function escapeHTML(value) {
+        return String(value ?? "").replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        })[char]);
+    }
+
+    function getTransactions() {
+        try {
+            const data = JSON.parse(
+                localStorage.getItem("transactions") || "[]"
+            );
+            return Array.isArray(data) ? data : [];
+        } catch {
+            return [];
+        }
+    }
+
+    let transactions = getTransactions();
+    let selectedTransaction = null;
+
+    const historyBody = document.getElementById("historyBody");
+    const historySearch = document.getElementById("historySearch");
+    const dateFilter = document.getElementById("dateFilter");
+
+    function getDate(value) {
+        const date = new Date(value);
+        return Number.isNaN(date.getTime()) ? null : date;
+    }
+
+    function formatDate(value) {
+        const date = getDate(value);
+        if (!date) return "-";
+
+        return date.toLocaleString("id-ID", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    }
+
+    function matchesDate(transaction) {
+        const date = getDate(transaction.tanggal);
+        if (!date) return dateFilter.value === "all";
+
+        const now = new Date();
+
+        if (dateFilter.value === "today") {
+            return date.toDateString() === now.toDateString();
+        }
+
+        if (dateFilter.value === "week") {
+            const sevenDaysAgo = new Date(now);
+            sevenDaysAgo.setDate(now.getDate() - 7);
+            return date >= sevenDaysAgo && date <= now;
+        }
+
+        if (dateFilter.value === "month") {
+            return date.getMonth() === now.getMonth() &&
+                   date.getFullYear() === now.getFullYear();
+        }
+
+        return true;
+    }
+
+    function renderHistory() {
+        transactions = getTransactions();
+
+        const query = historySearch.value.trim().toLowerCase();
+
+        const filtered = transactions.filter(transaction => {
+            const number = String(transaction.id ?? "");
+            const date = formatDate(transaction.tanggal);
+            const items = (transaction.items || [])
+                .map(item => item.nama)
+                .join(" ");
+
+            const matchesSearch =
+                number.toLowerCase().includes(query) ||
+                date.toLowerCase().includes(query) ||
+                items.toLowerCase().includes(query);
+
+            return matchesSearch && matchesDate(transaction);
+        });
+
+        if (filtered.length === 0) {
+            historyBody.innerHTML = `
+                <tr>
+                    <td colspan="5" class="text-center py-4">
+                        Belum ada transaksi yang ditemukan.
+                    </td>
+                </tr>`;
+            return;
+        }
+
+        historyBody.innerHTML = filtered.map((transaction, index) => `
+            <tr>
+                <td class="text-center">${index + 1}</td>
+                <td>TRX-${escapeHTML(transaction.id)}</td>
+                <td>${escapeHTML(formatDate(transaction.tanggal))}</td>
+                <td>${rupiah(transaction.total)}</td>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-primary"
+                            data-detail="${escapeHTML(transaction.id)}">
+                        <i class="fa-solid fa-eye me-1"></i>Detail
+                    </button>
+                </td>
+            </tr>
+        `).join("");
+    }
+
+    function showDetail(transaction) {
+        selectedTransaction = transaction;
+
+        document.getElementById("detailNumber").textContent =
+            "TRX-" + transaction.id;
+
+        document.getElementById("detailDate").textContent =
+            formatDate(transaction.tanggal);
+
+        const items = transaction.items || [];
+        const detailBody = document.getElementById("detailBody");
+
+        if (items.length === 0) {
+            detailBody.innerHTML = `
+                <tr><td colspan="3">Tidak ada detail item.</td></tr>`;
+        } else {
+            detailBody.innerHTML = items.map(item => `
+                <tr>
+                    <td>${escapeHTML(item.nama)}</td>
+                    <td class="text-center">${Number(item.qty) || 0}</td>
+                    <td>${rupiah((Number(item.harga) || 0) *
+                                 (Number(item.qty) || 0))}</td>
+                </tr>
+            `).join("");
+        }
+
+        document.getElementById("detailTotal").textContent =
+            rupiah(transaction.total);
+
+        document.getElementById("detailPanel").scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    }
+
+    historyBody.addEventListener("click", event => {
+        const button = event.target.closest("[data-detail]");
+        if (!button) return;
+
+        const transaction = getTransactions().find(
+            item => String(item.id) === button.dataset.detail
+        );
+
+        if (transaction) showDetail(transaction);
+    });
+
+    document.getElementById("filterButton").addEventListener("click", () => {
+        renderHistory();
+    });
+
+    historySearch.addEventListener("input", renderHistory);
+    dateFilter.addEventListener("change", renderHistory);
+
+    document.getElementById("globalSearchForm")
+        .addEventListener("submit", event => {
+            event.preventDefault();
+            historySearch.value =
+                document.getElementById("globalSearch").value;
+            renderHistory();
+        });
+
+    document.getElementById("backButton").addEventListener("click", () => {
+        document.getElementById("detailNumber").textContent =
+            "Pilih transaksi";
+        document.getElementById("detailDate").textContent = "-";
+        document.getElementById("detailBody").innerHTML = `
+            <tr>
+                <td colspan="3" class="text-center">
+                    Belum ada transaksi dipilih
+                </td>
+            </tr>`;
+        document.getElementById("detailTotal").textContent = "Rp. 0";
+        selectedTransaction = null;
+    });
+
+    // Perbarui daftar jika data transaksi berubah di tab browser lain.
+    window.addEventListener("storage", event => {
+        if (event.key === "transactions") renderHistory();
+    });
+
+    renderHistory();
+</script>
+
+</body>
+</html>
+
