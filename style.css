@@ -513,6 +513,92 @@ body {
     padding: 10px 18px;
 }
 
+
+/* ------------------------------------- */
+/* KOMPONEN HALAMAN LAPORAN              */
+/* ------------------------------------- */
+.report-box {
+    border: 2px solid #283a33;
+    border-radius: 12px;
+    padding: 24px 20px;
+    position: relative;
+    margin-bottom: 25px;
+    background: transparent;
+}
+
+.box-legend {
+    position: absolute;
+    top: -16px;
+    left: 20px;
+    background: #e5faf2;
+    padding: 0 10px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.report-input {
+    border: 1px solid #283a33;
+    height: 45px;
+    background-color: transparent;
+}
+
+.btn-filter {
+    background-color: #4b5563;
+    color: white;
+    height: 45px;
+    font-weight: bold;
+}
+
+.btn-filter:hover {
+    background-color: #374151;
+    color: white;
+}
+
+.report-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.report-card {
+    background-color: #b0b5ba;
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.rc-icon {
+    background: #4b5563;
+    color: white;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    flex-shrink: 0;
+}
+
+.rc-text p {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+}
+
+.rc-text h4 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.table-box {
+    padding: 30px 10px 15px;
+}
+
+
 /* ------------------------------------- */
 /* RESPONSIVE (HP & TABLET)              */
 /* ------------------------------------- */
@@ -536,6 +622,11 @@ body {
 
     .summary-row {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Laporan Tablet */
+    .report-summary-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -637,5 +728,17 @@ body {
     .input-panel,
     .cart-panel {
         padding: 16px;
+    }
+
+    /* Laporan HP */
+    .report-summary-grid { 
+        grid-template-columns: 1fr; 
+    }
+    .report-box {
+        padding-top: 30px;
+    }
+    .box-legend {
+        font-size: 18px;
+        top: -12px;
     }
 }
