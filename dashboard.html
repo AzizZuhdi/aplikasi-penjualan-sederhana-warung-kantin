@@ -189,57 +189,7 @@
 
     <!-- JAVASCRIPT BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        // Nama admin
-        const username =
-            sessionStorage.getItem("myshopUsername") || "Admin";
-
-        document.getElementById("adminName").textContent = username;
-
-        // Pencarian produk
-        const searchForm = document.getElementById("searchForm");
-        const searchInput = document.getElementById("searchInput");
-
-        searchForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const keyword = searchInput.value.trim().toLowerCase();
-            const rows = document.querySelectorAll("#productTable tr");
-
-            rows.forEach(function (row) {
-                row.style.display =
-                    row.textContent.toLowerCase().includes(keyword)
-                        ? ""
-                        : "none";
-            });
-        });
-
-        // Tampilkan semua produk jika pencarian kosong
-        searchInput.addEventListener("input", function () {
-            if (this.value.trim() === "") {
-                document.querySelectorAll("#productTable tr")
-                    .forEach(function (row) {
-                        row.style.display = "";
-                    });
-            }
-        });
-
-        // Status menu sidebar
-        document.querySelectorAll(".sidebar .nav-link").forEach(function (link) {
-            link.addEventListener("click", function () {
-                if (this.getAttribute("href").startsWith("#")) {
-                    document.querySelectorAll(".sidebar .nav-link")
-                        .forEach(function (item) {
-                            item.classList.remove("active");
-                        });
-
-                    this.classList.add("active");
-                }
-            });
-        });
-    </script>
-
+    <script src="javascript.js"></script>
 </body>
 
 </html>
