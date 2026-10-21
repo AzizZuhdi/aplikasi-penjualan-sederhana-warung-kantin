@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laporan Penjualan - Aplikasi Kantin</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER / NAVBAR (Sesuai Desain Utama) -->
+   <!-- HEADER / NAVBAR -->
+<nav class="navbar navbar-expand navbar-dark topbar">
+
+    <a href="dashboard.html" class="brand">
+        <i class="fa-solid fa-store"></i>
+        Aplikasi Penjualan Sederhana Warung/Kantin
+    </a>
+
+    <!-- PENCARIAN -->
+    <form class="search-form" id="globalSearch">
+        <input type="search" class="form-control" id="globalSearchInput" placeholder="Cari transaksi, produk, atau lainnya" aria-label="Cari">
+        <button type="submit" class="btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </form>
+
+    <!-- ADMIN -->
+    <ul class="navbar-nav admin-dropdown">
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="fa-solid fa-circle-user me-1"></i>
+                <span id="adminName">Admin</span>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#profil">Profil Saya</a></li>
+                <li><a class="dropdown-item" href="#pengaturan">Pengaturan</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="halamanlogin.html">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+
+</nav>
+    <div class="page-layout d-flex flex-column flex-md-row">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <nav class="nav flex-column">
+                <a class="nav-link" href="dashboard.html">
+                    <i class="fa-solid fa-house"></i> Dashboard
+                </a>
+                <a class="nav-link" href="produk.html">
+                    <i class="fa-solid fa-layer-group"></i> Produk
+                </a>
+                <a class="nav-link" href="kasir.html">
+                    <i class="fa-solid fa-bag-shopping"></i> Kasir/Penjualan
+                </a>
+                <a class="nav-link" href="riwayat.html">
+                    <i class="fa-regular fa-clock"></i> Riwayat
+                </a>
+                <a class="nav-link active" href="laporan.html">
+                    <i class="fa-solid fa-book"></i> Laporan
+                </a>
+                <a class="nav-link" href="halamanlogin.html">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- KONTEN LAPORAN -->
+        <main class="main-content">
+            <h1 class="page-title">Laporan Penjualan</h1>
+            <p class="breadcrumb-text">Menu &gt; Laporan Penjualan</p>
+
+            <!-- KOTAK FILTER -->
+            <div class="report-box filter-box">
+                <div class="box-legend">Filter</div>
+
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Periode Mulai</label>
+                        <input type="date" class="form-control report-input" value="2026-01-01">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Periode Selesai</label>
+                        <input type="date" class="form-control report-input" value="2026-02-01">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Kategori</label>
+                        <select class="form-select report-input">
+                            <option value="">Semua Kategori</option>
+                            <option value="Makanan">Makanan</option>
+                            <option value="Minuman">Minuman</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-filter w-100">Tampilkan</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KARTU RINGKASAN LAPORAN -->
+            <div class="report-summary-grid">
+                <div class="report-card">
+                    <div class="rc-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+                    <div class="rc-text">
+                        <p>Total OMZet</p>
+                        <h4>Rp. —</h4>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <div class="rc-icon"><i class="fa-regular fa-file-lines"></i></div>
+                    <div class="rc-text">
+                        <p>Total produk</p>
+                        <h4>— Item</h4>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <div class="rc-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                    <div class="rc-text">
+                        <p>Total Transaksi</p>
+                        <h4>— Transaksi</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TABEL DAFTAR PRODUK TERJUAL -->
+            <div class="report-box table-box">
+                <div class="box-legend">Daftar produk terjual</div>
+
+                <div class="table-responsive mt-2 px-2">
+                    <table class="table custom-table align-middle">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama produk</th>
+                                <th>Kategori</th>
+                                <th>Qty terjual</th>
+                                <th>Total (Rp)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Contoh baris kosong untuk desain -->
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="fw-bold">
+                                <td colspan="3" class="text-center">Total</td>
+                                <td class="text-center">—</td>
+                                <td class="text-center">Rp. —</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById("adminName").textContent = sessionStorage.getItem("myshopUsername") || "Admin";
+    </script>
+
+</body>
+
+</html>
