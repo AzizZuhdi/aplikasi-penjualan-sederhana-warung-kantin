@@ -1,662 +1,280 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kasir / Penjualan</title>
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            background: #e3f8f1;
-            color: #151515;
-            font-family: Arial, sans-serif;
-        }
-
-        /* NAVBAR */
-        .topbar {
-            background: #174f46;
-            min-height: 72px;
-        }
-
-        .navbar-brand {
-            font-size: 27px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        .search-input {
-            height: 52px;
-            min-width: 0;
-        }
-
-        .search-button {
-            height: 52px;
-            width: 72px;
-            color: #41c9a9;
-            border: 1px solid #328a78;
-        }
-
-        /* SIDEBAR */
-        .sidebar {
-            width: 320px;
-            flex-shrink: 0;
-            min-height: calc(100vh - 72px);
-            background: #e3f8f1;
-            border-right: 1px solid #c8e3da;
-            padding: 28px 16px;
-        }
-
-        .sidebar .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 18px 20px;
-            margin-bottom: 8px;
-            color: #111;
-            font-size: 20px;
-            border-radius: 14px;
-        }
-
-        .sidebar .nav-link i {
-            width: 28px;
-            text-align: center;
-            font-size: 30px;
-        }
-
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            background: #cfe5fa;
-            color: #1763a0;
-            font-weight: bold;
-        }
-
-        /* KONTEN */
-        .main-content {
-            flex: 1;
-            min-width: 0;
-            padding: 32px;
-        }
-
-        .page-title {
-            font-size: 44px;
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
-
-        .breadcrumb-text {
-            font-size: 20px;
-            color: #788d88;
-            margin-bottom: 28px;
-        }
-
-        /* PANEL KASIR */
-        .cashier-panel {
-            background: #e3f8f1;
-            border: 2px solid #303b38;
-            border-radius: 30px;
-            padding: 24px;
-            min-height: 490px;
-        }
-
-        .section-heading {
-            font-size: 25px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .input-panel {
-            background: #b9b9b9;
-            border-radius: 28px;
-            padding: 22px;
-            height: 100%;
-        }
-
-        .input-panel h3,
-        .cart-panel h3 {
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        .input-card {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 16px;
-        }
-
-        .input-card h4 {
-            font-size: 26px;
-            font-weight: bold;
-        }
-
-        .form-label {
-            font-weight: bold;
-            margin-bottom: 6px;
-        }
-
-        .form-control,
-        .form-select {
-            border: 1px solid #8b9994;
-            min-height: 44px;
-        }
-
-        .quantity-input {
-            width: 95px;
-        }
-
-        .quantity-button {
-            width: 44px;
-            height: 42px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .subtotal-text {
-            font-size: 25px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        .add-cart-button {
-            width: 100%;
-            border: 3px solid #151515;
-            border-radius: 12px;
-            background: #fff;
-            font-size: 21px;
-            font-weight: bold;
-            padding: 10px;
-            margin-top: 18px;
-        }
-
-        .add-cart-button:hover {
-            background: #d8eaff;
-        }
-
-        /* KERANJANG */
-        .cart-panel {
-            background: white;
-            border: 2px solid #303b38;
-            border-radius: 28px;
-            padding: 22px;
-            height: 100%;
-        }
-
-        .cart-title {
-            text-align: center;
-            font-size: 27px;
-            font-weight: bold;
-            margin-bottom: 18px;
-        }
-
-        .cart-table {
-            min-width: 500px;
-        }
-
-        .cart-table th {
-            background: #dedede;
-            border: 2px solid #222;
-            text-align: center;
-            white-space: nowrap;
-        }
-
-        .cart-table td {
-            border: 1px solid #aaa;
-            vertical-align: middle;
-        }
-
-        .cart-table .empty-row td {
-            height: 38px;
-        }
-
-        .cart-summary {
-            text-align: right;
-            font-size: 23px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        .payment-row {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 18px;
-            font-size: 19px;
-        }
-
-        .payment-row input {
-            max-width: 180px;
-        }
-
-        .cart-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .cart-actions .btn {
-            font-weight: bold;
-            padding: 10px 18px;
-        }
-
-        @media (max-width: 1100px) {
-            .sidebar {
-                width: 240px;
-            }
-
-            .main-content {
-                padding: 20px;
-            }
-
-            .navbar-brand {
-                font-size: 19px;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .sidebar {
-                width: 100%;
-                min-height: auto;
-                padding: 10px;
-            }
-
-            .sidebar .nav-link {
-                font-size: 16px;
-                padding: 10px;
-            }
-
-            .sidebar .nav-link i {
-                font-size: 20px;
-            }
-
-            .main-content {
-                padding: 16px;
-            }
-
-            .page-title {
-                font-size: 32px;
-            }
-
-            .cashier-panel {
-                padding: 14px;
-            }
-
-            .input-panel,
-            .cart-panel {
-                padding: 16px;
-            }
-        }
-    </style>
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- HEADER / NAVBAR -->
-<nav class="navbar navbar-dark topbar px-3">
-    <div class="container-fluid gap-3 flex-nowrap">
-        <a class="navbar-brand d-flex align-items-center" href="dashboard.html">
-            <i class="fa-solid fa-store me-3"></i>
+    <!-- HEADER / NAVBAR (Sama dengan Dashboard & Produk) -->
+    <nav class="navbar navbar-expand navbar-dark topbar">
+        <a href="dashboard.html" class="brand">
+            <i class="fa-solid fa-store"></i>
             Aplikasi Penjualan Sederhana Warung/Kantin
         </a>
 
-        <form class="d-flex flex-grow-1" style="max-width: 620px;"
-              id="searchForm">
-            <input class="form-control search-input"
-                   id="globalSearch"
-                   type="search"
-                   placeholder="Cari transaksi, produk, atau lainnya">
-            <button class="btn search-button ms-2" type="submit">
+        <!-- PENCARIAN -->
+        <form class="search-form" id="globalSearch">
+            <input type="search" class="form-control" id="globalSearchInput"
+                placeholder="Cari transaksi, produk, atau lainnya" aria-label="Cari">
+            <button type="submit" class="btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>
 
-        <div class="dropdown ms-auto">
-            <button class="btn text-white dropdown-toggle"
-                    data-bs-toggle="dropdown">
-                <i class="fa-solid fa-circle-user me-2"></i>
-                <span id="adminName">Admin</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
-                <li><a class="dropdown-item" href="halamanlogin.html">Logout</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+        <!-- ADMIN -->
+        <ul class="navbar-nav admin-dropdown">
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fa-solid fa-circle-user me-1"></i>
+                    <span id="adminName">Admin</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#profil">Profil Saya</a></li>
+                    <li><a class="dropdown-item" href="#pengaturan">Pengaturan</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="halamanlogin.html">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 
-<div class="d-flex flex-column flex-md-row">
+    <!-- LAYOUT UTAMA -->
+    <div class="page-layout">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-        <nav class="nav flex-column">
-            <a class="nav-link" href="dashboard.html">
-                <i class="fa-solid fa-house"></i>
-                Dashboard
-            </a>
+        <!-- SIDEBAR KIRI -->
+        <aside class="sidebar">
+            <nav class="nav flex-column">
+                <a class="nav-link" href="dashboard.html">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a class="nav-link" href="produk.html">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Produk</span>
+                </a>
+                <a class="nav-link active" href="kasir.html">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Kasir/Penjualan</span>
+                </a>
+                <a class="nav-link" href="riwayat.html">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Riwayat</span>
+                </a>
+                <a class="nav-link" href="laporan.html">
+                    <i class="fa-solid fa-book"></i>
+                    <span>Laporan</span>
+                </a>
+                <a class="nav-link" href="halamanlogin.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
 
-            <a class="nav-link" href="produk.html">
-                <i class="fa-solid fa-layer-group"></i>
-                Produk
-            </a>
+        <!-- KONTEN KASIR (Kanan) -->
+        <main class="main-content">
+            <h1 class="page-title">Kasir / Penjualan</h1>
+            <p class="breadcrumb-text">Menu &gt; Kasir / Penjualan</p>
 
-            <a class="nav-link active" href="kasir.html">
-                <i class="fa-solid fa-bag-shopping"></i>
-                Kasir/Penjualan
-            </a>
+            <div class="cashier-panel">
+                <div class="row g-4">
 
-            <a class="nav-link" href="riwayat.html">
-                <i class="fa-regular fa-clock"></i>
-                Riwayat
-            </a>
+                    <!-- INPUT PRODUK -->
+                    <div class="col-lg-5">
+                        <div class="input-panel">
+                            <h3>
+                                <i class="fa-solid fa-circle-dollar-to-slot me-2"></i> Cari &amp; Input produk
+                            </h3>
 
-            <a class="nav-link" href="laporan.html">
-                <i class="fa-solid fa-book"></i>
-                Laporan
-            </a>
+                            <div class="input-card">
+                                <h4>Tambah ke keranjang</h4>
+                                <label class="form-label" for="productSearch">Cari produk</label>
 
-            <a class="nav-link" href="halamanlogin.html">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                Logout
-            </a>
-        </nav>
-    </aside>
+                                <input type="search" class="form-control" id="productSearch" list="productOptions"
+                                    placeholder="Cari nama atau kode produk...">
+                                <datalist id="productOptions"></datalist>
 
-    <!-- KONTEN KASIR -->
-    <main class="main-content">
-
-        <h1 class="page-title">Kasir / Penjualan</h1>
-        <p class="breadcrumb-text">Menu &gt; Kasir / Penjualan</p>
-
-        <div class="cashier-panel">
-            <div class="row g-4">
-
-                <!-- INPUT PRODUK -->
-                <div class="col-lg-5">
-                    <div class="input-panel">
-                        <h3>
-                            <i class="fa-solid fa-circle-dollar-to-slot me-2"></i>
-                            Cari &amp; Input produk
-                        </h3>
-
-                        <div class="input-card">
-                            <h4>Tambah ke keranjang</h4>
-
-                            <label class="form-label" for="productSearch">
-                                Cari produk
-                            </label>
-
-                            <input type="search"
-                                   class="form-control"
-                                   id="productSearch"
-                                   list="productOptions"
-                                   placeholder="Cari nama atau kode produk...">
-
-                            <datalist id="productOptions"></datalist>
-
-                            <label class="form-label mt-3" for="quantity">
-                                Jumlah (qty)
-                            </label>
-
-                            <div class="d-flex align-items-center gap-2">
-                                <input type="number"
-                                       class="form-control quantity-input"
-                                       id="quantity"
-                                       min="1"
-                                       value="1">
-
-                                <button class="btn btn-secondary quantity-button"
-                                        id="minusBtn" type="button">[-]</button>
-
-                                <button class="btn btn-secondary quantity-button"
-                                        id="plusBtn" type="button">[+]</button>
+                                <label class="form-label mt-3" for="quantity">Jumlah (qty)</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <input type="number" class="form-control quantity-input" id="quantity" min="1"
+                                        value="1">
+                                    <button class="btn btn-secondary quantity-button" id="minusBtn"
+                                        type="button">[-]</button>
+                                    <button class="btn btn-secondary quantity-button" id="plusBtn"
+                                        type="button">[+]</button>
+                                </div>
                             </div>
+
+                            <div class="subtotal-text">
+                                Subtotal: <span id="subtotal">Rp. 0</span>
+                            </div>
+
+                            <button class="add-cart-button" id="addToCart">
+                                <i class="fa-solid fa-plus me-2"></i> Tambah ke keranjang
+                            </button>
+                            <p id="productMessage" class="mt-2 mb-0" role="status"></p>
                         </div>
+                    </div>
 
-                        <div class="subtotal-text">
-                            Subtotal: <span id="subtotal">Rp. 0</span>
+                    <!-- KERANJANG BELANJA -->
+                    <div class="col-lg-7">
+                        <div class="cart-panel">
+                            <h2 class="cart-title">
+                                Keranjang Belanja (<span id="itemCount">0</span> Item)
+                            </h2>
+
+                            <div class="table-responsive">
+                                <table class="table cart-table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama produk</th>
+                                            <th>Harga</th>
+                                            <th>Qty</th>
+                                            <th>Subtotal</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cartBody">
+                                        <tr>
+                                            <td colspan="6" class="text-center text-secondary py-4">Keranjang masih
+                                                kosong</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="cart-summary">
+                                Total Belanja<br>
+                                Total: <span id="total">Rp. 0</span>
+                            </div>
+
+                            <div class="payment-row">
+                                <label for="payment">Bayar (Rp):</label>
+                                <input type="number" class="form-control" id="payment" min="0"
+                                    placeholder="Masukkan bayar">
+                            </div>
+
+                            <div class="mt-2 text-end">
+                                Kembalian: <strong id="change">Rp. 0</strong>
+                            </div>
+
+                            <div class="cart-actions">
+                                <button class="btn btn-secondary" id="cancelBtn">Batal</button>
+                                <button class="btn btn-primary" id="saveTransaction">
+                                    <i class="fa-solid fa-floppy-disk me-1"></i> Simpan transaksi
+                                </button>
+                            </div>
+                            <p id="transactionMessage" class="mt-3 mb-0 text-end" role="status"></p>
                         </div>
-
-                        <button class="add-cart-button" id="addToCart">
-                            <i class="fa-solid fa-plus me-2"></i>
-                            Tambah ke keranjang
-                        </button>
-
-                        <p id="productMessage" class="mt-2 mb-0"
-                           role="status"></p>
                     </div>
                 </div>
-
-                <!-- KERANJANG BELANJA -->
-                <div class="col-lg-7">
-                    <div class="cart-panel">
-                        <h2 class="cart-title">
-                            Keranjang Belanja (<span id="itemCount">0</span> Item)
-                        </h2>
-
-                        <div class="table-responsive">
-                            <table class="table cart-table mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama produk</th>
-                                        <th>Harga</th>
-                                        <th>Qty</th>
-                                        <th>Subtotal</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="cartBody">
-                                    <tr>
-                                        <td colspan="6"
-                                            class="text-center text-secondary py-4">
-                                            Keranjang masih kosong
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="cart-summary">
-                            Total Belanja<br>
-                            Total: <span id="total">Rp. 0</span>
-                        </div>
-
-                        <div class="payment-row">
-                            <label for="payment">Bayar (Rp):</label>
-                            <input type="number"
-                                   class="form-control"
-                                   id="payment"
-                                   min="0"
-                                   placeholder="Masukkan bayar">
-                        </div>
-
-                        <div class="mt-2 text-end">
-                            Kembalian:
-                            <strong id="change">Rp. 0</strong>
-                        </div>
-
-                        <div class="cart-actions">
-                            <button class="btn btn-secondary" id="cancelBtn">
-                                Batal
-                            </button>
-
-                            <button class="btn btn-primary"
-                                    id="saveTransaction">
-                                <i class="fa-solid fa-floppy-disk me-1"></i>
-                                Simpan transaksi
-                            </button>
-                        </div>
-
-                        <p id="transactionMessage"
-                           class="mt-3 mb-0 text-end"
-                           role="status"></p>
-                    </div>
-                </div>
-
             </div>
-        </div>
-    </main>
-</div>
+        </main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
 
-<script>
-    // Nama admin
-    document.getElementById("adminName").textContent =
-        sessionStorage.getItem("myshopUsername") || "Admin";
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById("adminName").textContent = sessionStorage.getItem("myshopUsername") || "Admin";
 
-    // Contoh data produk.
-    // Ganti dengan data produk yang tersimpan di halaman Produk.
-    const defaultProducts = [
-        { kode: "MRN10", nama: "Donat", kategori: "Makanan", harga: 5000, stok: 6 },
-        { kode: "MNM09", nama: "Teh Pucuk", kategori: "Minuman", harga: 4000, stok: 2 }
-    ];
+        const defaultProducts = [
+            { kode: "MRN10", nama: "Donat", kategori: "Makanan", harga: 5000, stok: 6 },
+            { kode: "MNM09", nama: "Teh Pucuk", kategori: "Minuman", harga: 4000, stok: 2 }
+        ];
 
-    // Ambil data produk dari localStorage jika tersedia.
-    let products = defaultProducts;
-
-    try {
-        const savedProducts = JSON.parse(
-            localStorage.getItem("products") || "null"
-        );
-
-        if (Array.isArray(savedProducts) && savedProducts.length > 0) {
-            products = savedProducts.map(p => ({
-                kode: p.kode ?? p.kodeProduk ?? "",
-                nama: p.nama ?? p.namaProduk ?? "",
-                kategori: p.kategori ?? "Lainnya",
-                harga: Number(p.harga) || 0,
-                stok: Number(p.stok) || 0
-            }));
-        }
-    } catch (error) {
-        console.warn("Data produk tidak dapat dibaca.", error);
-    }
-
-    let cart = [];
-
-    const rupiah = value =>
-        "Rp. " + Number(value).toLocaleString("id-ID");
-
-    const productSearch = document.getElementById("productSearch");
-    const quantityInput = document.getElementById("quantity");
-    const productOptions = document.getElementById("productOptions");
-    const productMessage = document.getElementById("productMessage");
-
-    function findProduct(value) {
-        const search = value.trim().toLowerCase();
-
-        return products.find(p =>
-            String(p.nama).toLowerCase() === search ||
-            String(p.kode).toLowerCase() === search
-        );
-    }
-
-    function updateProductOptions() {
-        productOptions.innerHTML = products.map(p =>
-            `<option value="${escapeHTML(p.nama)}">${escapeHTML(p.kode)} - ${rupiah(p.harga)}</option>`
-        ).join("");
-    }
-
-    function escapeHTML(value) {
-        return String(value).replace(/[&<>"']/g, char => ({
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#39;"
-        })[char]);
-    }
-
-    function updateSubtotal() {
-        const product = findProduct(productSearch.value);
-        const qty = Math.max(1, Number(quantityInput.value) || 1);
-
-        document.getElementById("subtotal").textContent =
-            product ? rupiah(product.harga * qty) : "Rp. 0";
-    }
-
-    productSearch.addEventListener("input", updateSubtotal);
-    quantityInput.addEventListener("input", updateSubtotal);
-
-    document.getElementById("plusBtn").addEventListener("click", () => {
-        quantityInput.value = Math.max(1, Number(quantityInput.value) || 1) + 1;
-        updateSubtotal();
-    });
-
-    document.getElementById("minusBtn").addEventListener("click", () => {
-        quantityInput.value = Math.max(1, Number(quantityInput.value) - 1);
-        updateSubtotal();
-    });
-
-    document.getElementById("addToCart").addEventListener("click", () => {
-        const product = findProduct(productSearch.value);
-        const qty = Math.floor(Number(quantityInput.value));
-
-        if (!product) {
-            productMessage.className = "mt-2 text-danger";
-            productMessage.textContent =
-                "Produk tidak ditemukan. Pilih produk dari daftar.";
-            return;
+        let products = defaultProducts;
+        try {
+            const savedProducts = JSON.parse(localStorage.getItem("products") || "null");
+            if (Array.isArray(savedProducts) && savedProducts.length > 0) {
+                products = savedProducts.map(p => ({
+                    kode: p.kode ?? p.kodeProduk ?? "",
+                    nama: p.nama ?? p.namaProduk ?? "",
+                    kategori: p.kategori ?? "Lainnya",
+                    harga: Number(p.harga) || 0,
+                    stok: Number(p.stok) || 0
+                }));
+            }
+        } catch (error) {
+            console.warn("Data produk tidak dapat dibaca.", error);
         }
 
-        if (!Number.isInteger(qty) || qty < 1) {
-            productMessage.className = "mt-2 text-danger";
-            productMessage.textContent = "Jumlah harus minimal 1.";
-            return;
+        let cart = [];
+        const rupiah = value => "Rp. " + Number(value).toLocaleString("id-ID");
+
+        const productSearch = document.getElementById("productSearch");
+        const quantityInput = document.getElementById("quantity");
+        const productOptions = document.getElementById("productOptions");
+        const productMessage = document.getElementById("productMessage");
+
+        function findProduct(value) {
+            const search = value.trim().toLowerCase();
+            return products.find(p => String(p.nama).toLowerCase() === search || String(p.kode).toLowerCase() === search);
         }
 
-        const existing = cart.find(item => item.kode === product.kode);
-        const currentQty = existing ? existing.qty : 0;
-
-        if (currentQty + qty > product.stok) {
-            productMessage.className = "mt-2 text-danger";
-            productMessage.textContent =
-                `Stok ${product.nama} hanya ${product.stok}.`;
-            return;
+        function updateProductOptions() {
+            productOptions.innerHTML = products.map(p => `<option value="${escapeHTML(p.nama)}">${escapeHTML(p.kode)} - ${rupiah(p.harga)}</option>`).join("");
         }
 
-        if (existing) {
-            existing.qty += qty;
-        } else {
-            cart.push({
-                kode: product.kode,
-                nama: product.nama,
-                harga: product.harga,
-                qty: qty
-            });
+        function escapeHTML(value) {
+            return String(value).replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
         }
 
-        productSearch.value = "";
-        quantityInput.value = 1;
-        productMessage.className = "mt-2 text-success";
-        productMessage.textContent = "Produk ditambahkan ke keranjang.";
+        function updateSubtotal() {
+            const product = findProduct(productSearch.value);
+            const qty = Math.max(1, Number(quantityInput.value) || 1);
+            document.getElementById("subtotal").textContent = product ? rupiah(product.harga * qty) : "Rp. 0";
+        }
 
-        updateSubtotal();
-        renderCart();
-    });
+        productSearch.addEventListener("input", updateSubtotal);
+        quantityInput.addEventListener("input", updateSubtotal);
+        document.getElementById("plusBtn").addEventListener("click", () => { quantityInput.value = Math.max(1, Number(quantityInput.value) || 1) + 1; updateSubtotal(); });
+        document.getElementById("minusBtn").addEventListener("click", () => { quantityInput.value = Math.max(1, Number(quantityInput.value) - 1); updateSubtotal(); });
 
-    function renderCart() {
-        const cartBody = document.getElementById("cartBody");
+        document.getElementById("addToCart").addEventListener("click", () => {
+            const product = findProduct(productSearch.value);
+            const qty = Math.floor(Number(quantityInput.value));
 
-        if (cart.length === 0) {
-            cartBody.innerHTML = `
-                <tr>
-                    <td colspan="6" class="text-center text-secondary py-4">
-                        Keranjang masih kosong
-                    </td>
-                </tr>`;
-        } else {
-            cartBody.innerHTML = cart.map((item, index) => `
+            if (!product) {
+                productMessage.className = "mt-2 text-danger"; productMessage.textContent = "Produk tidak ditemukan. Pilih produk dari daftar."; return;
+            }
+            if (!Number.isInteger(qty) || qty < 1) {
+                productMessage.className = "mt-2 text-danger"; productMessage.textContent = "Jumlah harus minimal 1."; return;
+            }
+
+            const existing = cart.find(item => item.kode === product.kode);
+            const currentQty = existing ? existing.qty : 0;
+            if (currentQty + qty > product.stok) {
+                productMessage.className = "mt-2 text-danger"; productMessage.textContent = `Stok ${product.nama} hanya ${product.stok}.`; return;
+            }
+
+            if (existing) { existing.qty += qty; } else { cart.push({ kode: product.kode, nama: product.nama, harga: product.harga, qty: qty }); }
+
+            productSearch.value = ""; quantityInput.value = 1;
+            productMessage.className = "mt-2 text-success"; productMessage.textContent = "Produk ditambahkan ke keranjang.";
+            updateSubtotal(); renderCart();
+        });
+
+        function renderCart() {
+            const cartBody = document.getElementById("cartBody");
+            if (cart.length === 0) {
+                cartBody.innerHTML = `<tr><td colspan="6" class="text-center text-secondary py-4">Keranjang masih kosong</td></tr>`;
+            } else {
+                cartBody.innerHTML = cart.map((item, index) => `
                 <tr>
                     <td class="text-center">${index + 1}</td>
                     <td>${escapeHTML(item.nama)}</td>
@@ -664,146 +282,82 @@
                     <td class="text-center">${item.qty}</td>
                     <td>${rupiah(item.harga * item.qty)}</td>
                     <td class="text-center">
-                        <button class="btn btn-sm btn-danger"
-                                data-remove="${index}"
-                                aria-label="Hapus ${escapeHTML(item.nama)}">
+                        <button class="btn btn-sm btn-danger" data-remove="${index}" aria-label="Hapus ${escapeHTML(item.nama)}">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </td>
                 </tr>`).join("");
-        }
-
-        const total = cart.reduce(
-            (sum, item) => sum + item.harga * item.qty, 0
-        );
-
-        document.getElementById("itemCount").textContent =
-            cart.reduce((sum, item) => sum + item.qty, 0);
-
-        document.getElementById("total").textContent = rupiah(total);
-        updateChange();
-    }
-
-    document.getElementById("cartBody").addEventListener("click", event => {
-        const button = event.target.closest("[data-remove]");
-        if (!button) return;
-
-        cart.splice(Number(button.dataset.remove), 1);
-        renderCart();
-    });
-
-    function updateChange() {
-        const total = cart.reduce(
-            (sum, item) => sum + item.harga * item.qty, 0
-        );
-
-        const payment = Number(document.getElementById("payment").value) || 0;
-
-        document.getElementById("change").textContent =
-            rupiah(Math.max(0, payment - total));
-    }
-
-    document.getElementById("payment").addEventListener("input", updateChange);
-
-    document.getElementById("cancelBtn").addEventListener("click", () => {
-        if (cart.length > 0 &&
-            !confirm("Kosongkan keranjang belanja?")) return;
-
-        cart = [];
-        document.getElementById("payment").value = "";
-        document.getElementById("transactionMessage").textContent = "";
-        productMessage.textContent = "";
-
-        renderCart();
-    });
-
-    document.getElementById("saveTransaction").addEventListener("click", () => {
-        const total = cart.reduce(
-            (sum, item) => sum + item.harga * item.qty, 0
-        );
-
-        const payment = Number(document.getElementById("payment").value) || 0;
-        const message = document.getElementById("transactionMessage");
-
-        if (cart.length === 0) {
-            message.className = "mt-3 text-end text-danger";
-            message.textContent = "Keranjang masih kosong.";
-            return;
-        }
-
-        if (payment < total) {
-            message.className = "mt-3 text-end text-danger";
-            message.textContent = "Uang pembayaran belum mencukupi.";
-            return;
-        }
-
-        // Periksa stok sebelum menyimpan transaksi.
-        for (const item of cart) {
-            const product = products.find(p => p.kode === item.kode);
-
-            if (!product || product.stok < item.qty) {
-                message.className = "mt-3 text-end text-danger";
-                message.textContent =
-                    `Stok ${item.nama} tidak mencukupi.`;
-                return;
             }
+
+            const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
+            document.getElementById("itemCount").textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById("total").textContent = rupiah(total);
+            updateChange();
         }
 
-        // Kurangi stok produk.
-        cart.forEach(item => {
-            const product = products.find(p => p.kode === item.kode);
-            product.stok -= item.qty;
+        document.getElementById("cartBody").addEventListener("click", event => {
+            const button = event.target.closest("[data-remove]");
+            if (!button) return;
+            cart.splice(Number(button.dataset.remove), 1);
+            renderCart();
         });
 
-        // Simpan transaksi di browser.
-        const transaction = {
-            id: Date.now(),
-            tanggal: new Date().toISOString(),
-            items: cart.map(item => ({ ...item })),
-            total: total,
-            bayar: payment,
-            kembalian: payment - total
-        };
-
-        const transactions = JSON.parse(
-            localStorage.getItem("transactions") || "[]"
-        );
-
-        transactions.push(transaction);
-        localStorage.setItem("transactions", JSON.stringify(transactions));
-        localStorage.setItem("products", JSON.stringify(products));
-
-        // Perbarui tampilan.
-        message.className = "mt-3 text-end text-success";
-        message.textContent = "Transaksi berhasil disimpan.";
-
-        cart = [];
-        document.getElementById("payment").value = "";
-        renderCart();
-        updateProductOptions();
-
-        productSearch.value = "";
-        quantityInput.value = 1;
-        updateSubtotal();
-    });
-
-    document.getElementById("searchForm").addEventListener("submit", event => {
-        event.preventDefault();
-
-        const query = document.getElementById("globalSearch")
-            .value.trim();
-
-        if (query) {
-            productSearch.value = query;
-            updateSubtotal();
-            productSearch.focus();
+        function updateChange() {
+            const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
+            const payment = Number(document.getElementById("payment").value) || 0;
+            document.getElementById("change").textContent = rupiah(Math.max(0, payment - total));
         }
-    });
 
-    updateProductOptions();
-    renderCart();
-</script>
+        document.getElementById("payment").addEventListener("input", updateChange);
+        document.getElementById("cancelBtn").addEventListener("click", () => {
+            if (cart.length > 0 && !confirm("Kosongkan keranjang belanja?")) return;
+            cart = []; document.getElementById("payment").value = "";
+            document.getElementById("transactionMessage").textContent = ""; productMessage.textContent = "";
+            renderCart();
+        });
 
+        document.getElementById("saveTransaction").addEventListener("click", () => {
+            const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
+            const payment = Number(document.getElementById("payment").value) || 0;
+            const message = document.getElementById("transactionMessage");
+
+            if (cart.length === 0) { message.className = "mt-3 text-end text-danger"; message.textContent = "Keranjang masih kosong."; return; }
+            if (payment < total) { message.className = "mt-3 text-end text-danger"; message.textContent = "Uang pembayaran belum mencukupi."; return; }
+
+            for (const item of cart) {
+                const product = products.find(p => p.kode === item.kode);
+                if (!product || product.stok < item.qty) {
+                    message.className = "mt-3 text-end text-danger"; message.textContent = `Stok ${item.nama} tidak mencukupi.`; return;
+                }
+            }
+
+            cart.forEach(item => { const product = products.find(p => p.kode === item.kode); product.stok -= item.qty; });
+
+            const transaction = { id: Date.now(), tanggal: new Date().toISOString(), items: cart.map(item => ({ ...item })), total: total, bayar: payment, kembalian: payment - total };
+            const transactions = JSON.parse(localStorage.getItem("transactions") || "[]");
+            transactions.push(transaction);
+            localStorage.setItem("transactions", JSON.stringify(transactions));
+            localStorage.setItem("products", JSON.stringify(products));
+
+            message.className = "mt-3 text-end text-success"; message.textContent = "Transaksi berhasil disimpan.";
+            cart = []; document.getElementById("payment").value = "";
+            renderCart(); updateProductOptions(); productSearch.value = ""; quantityInput.value = 1; updateSubtotal();
+        });
+
+        // Sesuaikan ID pencarian global dengan ID standar di navbar
+        document.getElementById("globalSearch").addEventListener("submit", event => {
+            event.preventDefault();
+            const query = document.getElementById("globalSearchInput").value.trim();
+            if (query) {
+                productSearch.value = query;
+                updateSubtotal();
+                productSearch.focus();
+            }
+        });
+
+        updateProductOptions();
+        renderCart();
+    </script>
 </body>
-</html>
 
+</html>
