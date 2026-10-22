@@ -1,1 +1,191 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Login Aplikasi Kantin</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #07519a;
+            min-height: 100vh;
+        }
+
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            gap: 30px;
+            padding: 35px;
+            background-color: #07519a;
+        }
+
+        /* Logo Polibatam kiri dan kanan */
+        .polibatam-logo {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .polibatam-logo img {
+            width: 100%;
+            max-width: 270px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Kotak login */
+        .login-container {
+        width: 100%;
+        max-width: 400px;
+        flex-shrink: 0;
+        background: white;
+        padding: 25px 30px 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        /* Logo kantin */
+        .logo {
+    display: block;
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    margin: 0 auto 15px;
+}
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 22px;
+            color: #111;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .mb-3 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            height: 55px;
+            padding: 0 15px;
+            font-size: 17px;
+            border: 1px solid #c5dc27;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #40a9e3;
+        }
+
+        .btn-login {
+            width: 100%;
+            height: 55px;
+            border: none;
+            border-radius: 8px;
+            background: #40a9e3;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            background: #258fca;
+        }
+
+        .link-item {
+            margin-top: 20px;
+            margin-bottom: 18px;
+            font-size: 18px;
+        }
+
+        .register-item {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: blue;
+        }
+
+       
+    </style>
+</head>
+
+<body>
+
+    <div class="login-page">
+        <!-- Form login di tengah -->
+        <div class="login-container">
+
+            <img src="logo.jpeg" alt="Logo Kantin" class="logo">
+
+            <h2>Login</h2>
+            <p class="subtitle">Masuk untuk mengakses</p>
+
+            <form action="dashboard.html" method="get">
+
+                <div class="mb-3">
+                    <label for="username">Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Masukkan username"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Masukkan password"
+                        required>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    Masuk
+                </button>
+
+            </form>
+
+            <p class="link-item">
+                <a href="Lupa_Password.html">Lupa Password?</a>
+            </p>
+
+            <p class="register-item">
+                Belum punya akun?
+                <a href="DaftarAkun.html">Daftar Sekarang</a>
+            </p>
+
+        </div>
+    </div>
+
+</body>
+</html>
