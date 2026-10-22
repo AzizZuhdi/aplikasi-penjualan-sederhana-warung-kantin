@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // --- Set Nama Admin (Berlaku untuk semua halaman) ---
     const adminNameEl = document.getElementById("adminName");
     if (adminNameEl) {
-        adminNameEl.textContent = sessionStorage.getItem("myshopUsername") || "Admin";
+        adminNameEl.textContent = sessionStorage.getItem("myshopUsername") || "Pemilik";
     }
 
     // --- Deteksi Halaman & Jalankan Fitur ---
