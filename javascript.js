@@ -475,3 +475,127 @@ function initRiwayat() {
 
     renderHistory();
 }
+// ==========================================
+// KODE KHUSUS UNTUK HALAMAN KATEGORI
+// ==========================================
+
+let kategoriData = []; // Array untuk menyimpan data kategori
+
+const kategoriForm = document.getElementById('kategoriForm');
+const kategoriTableBody = document.getElementById('kategoriTableBody');
+const editIndexKategori = document.getElementById('editIndex');
+
+// Mengambil elemen Filter dan Pencarian
+const categoryFilter = document.getElementById('categoryFilter');
+const kategoriSearch = document.getElementById('kategoriSearch');
+
+// Cek apakah elemen kategori ada (agar tidak error di halaman lain)
+if (kategoriForm && kategoriTableBody) {
+    
+    // Event Listener untuk fitur Filter dan Pencarian
+    if (categoryFilter) {
+        categoryFilter.addEventListener('change', renderKategoriTable);
+    }
+    if (kategoriSearch) {
+        kategoriSearch.addEventListener('input', renderKategoriTable);
+    }
+
+    // Fungsi saat form disubmit (Tambah atau Simpan Edit)
+    kategoriForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // Mencegah halaman reload
+
+        // Ambil nilai dari inputan form
+        const nama = document.getElementById('productName').value;
+        const kategori = document.getElementById('productCategory').value;
+        const harga = document.getElementById('productPrice').value;
+        const stok = document.getElementById('productStock').value;
+        const index = editIndexKategori.value;
+
+        if (index == -1) {
+            // Tambah data baru
+            kategoriData.push({ nama, kategori, harga, stok });
+        } else {
+            // Update data lama (Edit)
+            kategoriData[index] = { nama, kategori, harga, stok };
+            editIndexKategori.value = -1; // Kembalikan index ke mode tambah
+        }
+
+        // Tutup modal bootstrap
+        const modal = bootstrap.Modal.getInstance(document.getElementById('kategoriModal'));
+        modal.hide();
+
+        // Bersihkan form & tampilkan tabel
+        kategoriForm.reset();
+        renderKategoriTable();
+    });
+}
+
+// Fungsi untuk me-render (menampilkan) data ke dalam tabel
+function renderKategoriTable() {
+    if (!kategoriTableBody) return;
+    
+    kategoriTableBody.innerHTML = ''; // Kosongkan tabel sebelum diisi ulang
+
+    // Ambil nilai yang sedang dipilih di filter dan pencarian
+    const filterValue = categoryFilter ? categoryFilter.value : '';
+    const searchValue = kategoriSearch ? kategoriSearch.value.toLowerCase() : '';
+
+    kategoriData.forEach((item, index) => {
+        // Logika untuk mencocokkan data dengan filter & pencarian
+        const matchCategory = (filterValue === '' || item.kategori === filterValue);
+        const matchSearch = item.nama.toLowerCase().includes(searchValue);
+
+        // Hanya tampilkan baris jika cocok dengan kategori DAN pencarian
+        if (matchCategory && matchSearch) {
+            let badgeClass = item.kategori === 'Makanan' ? 'bg-primary' : 'bg-info';
+            
+            kategoriTableBody.innerHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${item.nama}</td>
+                    <td><span class="badge ${badgeClass}">${item.kategori}</span></td>
+                    <td>Rp ${item.harga}</td>
+                    <td>${item.stok}</td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-sm btn-warning text-white me-1" onclick="editKategori(${index})" title="Edit">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-danger" onclick="hapusKategori(${index})" title="Hapus">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        }
+    });
+}
+
+// Fungsi untuk memunculkan data ke form saat tombol Edit diklik
+function editKategori(index) {
+    const item = kategoriData[index];
+    document.getElementById('productName').value = item.nama;
+    document.getElementById('productCategory').value = item.kategori;
+    document.getElementById('productPrice').value = item.harga;
+    document.getElementById('productStock').value = item.stok;
+    
+    editIndexKategori.value = index; 
+
+    const modal = new bootstrap.Modal(document.getElementById('kategoriModal'));
+    modal.show();
+}
+
+// Fungsi untuk menghapus data
+function hapusKategori(index) {
+    if (confirm("Apakah Anda yakin ingin menghapus produk ini dari kategori?")) {
+        kategoriData.splice(index, 1);
+        renderKategoriTable();
+    }
+}
+
+// Fungsi membersihkan form saat tombol "Tambah" diklik
+function prepareAddKategori() {
+    if(kategoriForm) {
+        kategoriForm.reset();
+        editIndexKategori.value = -1;
+    }
+}
