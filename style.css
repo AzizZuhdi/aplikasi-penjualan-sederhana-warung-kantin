@@ -130,6 +130,7 @@ body {
 .main-content {
     flex: 1;
     min-width: 0;
+    padding: 28px 30px;
     background: #e5faf2;
 }
 
@@ -179,15 +180,18 @@ body {
     align-items: center;
     justify-content: space-between;
 }
-
+.summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 20px rgba(37, 99, 235, 0.18);
+}
 .sales-card {
-    background: #1470f9;
-    color: white;
+    background: linear-gradient(120deg, #2563eb, #38bdf8);
+    color: #ffffff;
 }
 
 .transaction-card {
-    background: #ffbd08;
-    color: #171717;
+    background: linear-gradient(120deg, #ffdf85, #fdb421);
+    color: #17345f;
 }
 
 .summary-label {
@@ -209,13 +213,17 @@ body {
 /* TABEL STOK RENDAH (Dashboard) */
 .product-card {
     background: #ffffff;
-    border: 1px solid #777;
-    border-radius: 20px;
+    border: 1px solid #dbeafe;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #000;
-    max-width: 876px;
+    box-shadow: 0 5px 16px rgba(37, 99, 235, 0.08);
+    color: #17345f;
     width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+}
+.product-card:hover {
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
 }
 
 .product-header {
@@ -227,18 +235,19 @@ body {
     justify-content: center;
     align-items: center;
     gap: 12px;
+    color: #17345f;
 }
 
 .product-header i {
-    color: #333;
+    color: #c02e2e;
     font-size: 32px;
 }
 
 .white-line {
     border: none;
-    border-top: 3px solid white;
-    width: 85%;
-    margin: 10px auto 25px;
+    border-top: 3px solid rgb(37, 67, 67);
+    width: 92%;
+    margin: 0 auto 22px;
     opacity: 1;
 }
 
@@ -246,8 +255,37 @@ body {
     padding: 0 20px 30px 20px;
 }
 
-.table {
+
+.product-card .table {
+    width: 100%;
     margin: 0;
+    table-layout: auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* HEADER TABEL */
+.product-card .table thead th {
+    background: #76aff9;
+    color: #1e3a5f;
+    font-weight: 600;
+    padding: 14px 12px;
+    border-bottom: 1px solid #143156;
+    border-right: 1px solid #dbeafe;
+    text-align: center;
+}
+
+/* ISI TABEL */
+.product-card .table tbody td {
+    background: #ffffff;
+    color: #334155;
+    padding: 12px;
+    border-bottom: 1px solid #dbeafe;
+    border-right: 1px solid #dbeafe;
+    text-align: center;
 }
 
 
