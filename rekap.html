@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,13 +14,14 @@
     <!-- Style css -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- HEADER / NAVBAR -->
     <nav class="navbar navbar-expand navbar-dark topbar">
         <a href="dashboard.html" class="brand">
             <i class="fa-solid fa-store"></i>
-            Aplikasi Penjualan Sederhana
+            Aplikasi Penjualan Sederhana Warung/Kantin
         </a>
         <ul class="navbar-nav admin-dropdown ms-auto">
             <li class="nav-item dropdown">
@@ -27,11 +29,16 @@
                     <i class="fa-solid fa-circle-user fs-4 me-2"></i>
                     <div class="text-start d-none d-sm-block">
                         <span id="userName" class="d-block fw-bold" style="font-size: 14px; line-height: 1;">User</span>
-                        <span id="userRole" class="badge bg-warning text-dark mt-1" style="font-size: 10px;">Peran</span>
+                        <span id="userRole" class="badge bg-warning text-dark mt-1"
+                            style="font-size: 10px;">Peran</span>
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                    <li>
+                        <a class="dropdown-item text-danger fw-bold" href="login.html">
+                            <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Logout
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -42,25 +49,57 @@
         <aside class="sidebar">
             <nav class="nav flex-column" id="sidebarMenu">
                 <a class="nav-link" href="dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
-                
+
                 <!-- MENU REKAP KHUSUS PEMILIK (d-none berarti disembunyikan awalnya) -->
                 <a class="nav-link active menu-pemilik d-none" href="rekap.html">
                     <i class="fa-solid fa-chart-pie"></i><span>Rekap Keuangan</span>
                 </a>
-                
+
                 <a class="nav-link" href="kategori.html"><i class="fa-solid fa-tags"></i><span>Kategori</span></a>
                 <a class="nav-link" href="produk.html"><i class="fa-solid fa-layer-group"></i><span>Produk</span></a>
-                <a class="nav-link" href="kasir.html"><i class="fa-solid fa-bag-shopping"></i><span>Kasir/Penjualan</span></a>
+                <a class="nav-link" href="kasir.html"><i
+                        class="fa-solid fa-bag-shopping"></i><span>Kasir/Penjualan</span></a>
                 <a class="nav-link" href="riwayat.html"><i class="fa-regular fa-clock"></i><span>Riwayat</span></a>
                 <a class="nav-link" href="laporan.html"><i class="fa-solid fa-book"></i><span>Laporan</span></a>
-                <a class="nav-link" href="login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></a>
+                <a class="nav-link" href="login.html"><i
+                        class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></a>
             </nav>
         </aside>
 
         <!-- KONTEN REKAP -->
         <main class="main-content">
-            <h1 class="page-title text-warning"><i class="fa-solid fa-crown me-2"></i>Rekap Keuangan (Khusus Pemilik)</h1>
+            <h1 class="page-title text-warning"><i class="fa-solid fa-crown me-2"></i>Rekap Keuangan (Khusus Pemilik)
+            </h1>
             <p class="breadcrumb-text">Menu &gt; Rekap Keuangan</p>
+
+            <!-- FITUR FILTER REKAP -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body bg-light rounded">
+                    <form id="formFilterRekap" class="row g-3 align-items-end">
+                        <div class="col-md-3">
+                            <label for="startDate" class="form-label fw-bold">Periode Mulai</label>
+                            <input type="date" class="form-control" id="startDate">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="endDate" class="form-label fw-bold">Periode Selesai</label>
+                            <input type="date" class="form-control" id="endDate">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="kategoriRekap" class="form-label fw-bold">Kategori</label>
+                            <select class="form-select" id="kategoriRekap">
+                                <option value="">Semua Kategori</option>
+                                <option value="Makanan">Makanan</option>
+                                <option value="Minuman">Minuman</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary w-100 fw-bold">
+                                <i class="fa-solid fa-filter me-1"></i> Tampilkan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
             <!-- GRAFIK PENJUALAN -->
             <div class="card shadow-sm border-0 mb-4">
@@ -99,4 +138,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="javascript.js"></script>
 </body>
+
 </html>
