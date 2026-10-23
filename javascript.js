@@ -187,7 +187,10 @@ function initKasir() {
     }
 
     function updateProductOptions() {
-        productOptions.innerHTML = products.map(p => `<option value="${escapeHTML(p.nama)}">${escapeHTML(p.kode)} - ${rupiah(p.harga)}</option>`).join("");
+        // Mengubah tampilan dari Kode Produk menjadi Stok Produk & Harga
+        productOptions.innerHTML = products.map(p =>
+            `<option value="${escapeHTML(p.nama)}">Stok: ${p.stok} | ${rupiah(p.harga)}</option>`
+        ).join("");
     }
 
     function updateSubtotal() {
@@ -681,12 +684,12 @@ function initRekap() {
         // Ambil nilai dari input filter
         const startDate = startDateInput && startDateInput.value ? new Date(startDateInput.value) : null;
         let endDate = endDateInput && endDateInput.value ? new Date(endDateInput.value) : null;
-        
+
         // Atur agar End Date mencakup hingga jam 23:59:59 di hari tersebut
         if (endDate) {
             endDate.setHours(23, 59, 59, 999);
         }
-        
+
         const selectedKategori = kategoriInput ? kategoriInput.value : '';
 
         const productSales = {}; // Untuk data grafik
@@ -695,13 +698,13 @@ function initRekap() {
         // Mulai Filter Data
         transactions.forEach(trx => {
             const trxDate = new Date(trx.tanggal);
-            
+
             // 1. Filter Berdasarkan Tanggal / Periode
             if (startDate && trxDate < startDate) return; // Abaikan jika lebih lama dari start date
             if (endDate && trxDate > endDate) return;     // Abaikan jika lebih baru dari end date
 
             const tgl = trxDate.toLocaleDateString('id-ID');
-            
+
             (trx.items || []).forEach(item => {
                 // Cari kategori produk ini apa
                 const itemCat = categoryMap[item.nama] || 'Lainnya';
@@ -762,7 +765,7 @@ function initRekap() {
                 datasets: [{
                     label: 'Jumlah Terjual (Item)',
                     data: dataQty,
-                    backgroundColor: 'rgba(255, 193, 7, 0.7)', 
+                    backgroundColor: 'rgba(255, 193, 7, 0.7)',
                     borderColor: '#ffc107',
                     borderWidth: 1,
                     borderRadius: 5
@@ -783,7 +786,7 @@ function initRekap() {
 
     // Jalankan saat tombol "Tampilkan" (Submit Filter) ditekan
     if (formFilter) {
-        formFilter.addEventListener('submit', function(e) {
+        formFilter.addEventListener('submit', function (e) {
             e.preventDefault(); // Cegah halaman refresh
             loadRekapData(); // Render ulang tabel dan grafik sesuai filter
         });
