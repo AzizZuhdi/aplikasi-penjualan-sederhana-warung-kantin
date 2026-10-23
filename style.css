@@ -9,12 +9,13 @@ body {
     color: #171717;
 }
 
+
 /* ------------------------------------- */
 /* HEADER / NAVBAR UTAMA                 */
 /* ------------------------------------- */
 .topbar {
-    height: 68px;
-    background: #174f47;
+    height: 50px;
+    background: linear-gradient( 90deg, #4fc5b3, #5f8ff8);
     display: flex;
     align-items: center;
     padding: 0 22px;
@@ -23,7 +24,7 @@ body {
 
 .brand {
     color: white;
-    font-size: 23px;
+    font-size: 19px;
     font-weight: bold;
     text-decoration: none;
     white-space: nowrap;
@@ -38,7 +39,7 @@ body {
     align-items: center;
     gap: 10px;
     width: 460px;
-    max-width: 38%;
+    max-width: 30%;
 }
 
 .search-form input {
@@ -52,12 +53,12 @@ body {
 .search-form button {
     height: 45px;
     min-width: 55px;
-    border: 1px solid #32866f;
+    border: 1px solid #0c2921;
     color: #4dbb96;
 }
 
 .search-form button:hover {
-    background: #32866f;
+    background: #81e3c9;
     color: white;
 }
 
@@ -84,9 +85,14 @@ body {
 }
 
 .sidebar {
-    width: 282px;
+    width: 200px;
     flex-shrink: 0;
-    background: #e5faf2;
+    background: linear-gradient(
+        180deg,
+        #f8fbff 0%,
+        #4fc5b3 70%,
+        #afc9ee 100%
+    );
     border-right: 2px solid #d2e6df;
     padding: 21px 11px;
 }
@@ -105,14 +111,14 @@ body {
 }
 
 .sidebar .nav-link i {
-    width: 25px;
+    width: 15px;
     flex-shrink: 0;
     text-align: center;
-    font-size: 29px;
+    font-size: 20px;
 }
 
 .sidebar .nav-link:hover {
-    background: #d8eee7;
+    background: #87c2fe;
 }
 
 .sidebar .nav-link.active {
@@ -124,7 +130,6 @@ body {
 .main-content {
     flex: 1;
     min-width: 0;
-    padding: 30px 32px;
     background: #e5faf2;
 }
 
