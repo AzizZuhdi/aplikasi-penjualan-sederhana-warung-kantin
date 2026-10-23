@@ -1,6 +1,53 @@
 // ==========================================
 // 1. FUNGSI GLOBAL (Bisa dipakai di semua halaman)
 // ==========================================
+
+// ==========================================
+// SISTEM OTENTIKASI & PERAN (ROLE) SERVER
+// ==========================================
+const sessionData = localStorage.getItem('loggedInUser');
+let currentUser = null;
+
+if (sessionData) {
+    currentUser = JSON.parse(sessionData);
+} else {
+    // Jika belum login dan bukan di halaman login, paksa pindah ke login.html
+    if (!window.location.pathname.includes('login.html')) {
+        window.location.href = 'login.html';
+    }
+}
+
+// Fungsi untuk menampilkan profil di navbar
+function tampilkanProfilUser() {
+    if (!currentUser) return;
+
+    const userNameEl = document.getElementById('userName');
+    const userRoleEl = document.getElementById('userRole');
+
+    if (userNameEl && userRoleEl) {
+        userNameEl.textContent = currentUser.nama;
+        userRoleEl.textContent = currentUser.role;
+
+        if (currentUser.role === "Pemilik") {
+            userRoleEl.className = "badge bg-warning text-dark mt-1"; 
+        } else {
+            userRoleEl.className = "badge bg-info text-dark mt-1"; 
+        }
+    }
+}
+
+// Fungsi untuk tombol logout
+function setupLogout() {
+    const logoutBtns = document.querySelectorAll('a[href="login.html"]');
+    logoutBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('loggedInUser'); // Hapus sesi
+            window.location.href = 'login.html'; // Kembali ke login
+        });
+    });
+}
+
 const rupiah = (value) => "Rp. " + Number(value || 0).toLocaleString("id-ID");
 
 function escapeHTML(value) {
@@ -13,12 +60,6 @@ function escapeHTML(value) {
 // 2. JALANKAN SAAT HALAMAN SELESAI DIMUAT
 // ==========================================
 document.addEventListener("DOMContentLoaded", function () {
-
-    // --- Set Nama Admin (Berlaku untuk semua halaman) ---
-    const adminNameEl = document.getElementById("adminName");
-    if (adminNameEl) {
-        adminNameEl.textContent = sessionStorage.getItem("myshopUsername") || "Pemilik";
-    }
 
     // --- Deteksi Halaman & Jalankan Fitur ---
 
