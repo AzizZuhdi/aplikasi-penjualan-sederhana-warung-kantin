@@ -927,3 +927,131 @@ body {
         margin-top: 14px;
     }
 }
+
+/* ========================================== */
+/* ATURAN GAYA KHUSUS HALAMAN MANAJEMEN KATEGORI */
+/* ========================================== */
+
+/* Kotak Kontainer Card */
+.category-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card-box-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #171717;
+    margin-bottom: 20px;
+}
+
+.form-label-custom {
+    font-size: 14px;
+    font-weight: 600;
+    color: #171717;
+    margin-bottom: 6px;
+}
+
+/* Modifikasi Input Form Kategori */
+.input-custom, .table-search-input {
+    height: 42px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 14px;
+}
+
+.input-custom:focus, .table-search-input:focus {
+    border-color: #4fc5b3;
+    box-shadow: 0 0 0 0.25rem rgba(79, 197, 179, 0.15);
+}
+
+/* Tombol Utama Simpan */
+.btn-save-category {
+    background-color: #1d747a;
+    color: #ffffff;
+    font-weight: 600;
+    height: 42px;
+    border-radius: 6px;
+    border: none;
+    transition: background 0.2s ease-in-out;
+}
+
+.btn-save-category:hover {
+    background-color: #155e56;
+    color: #ffffff;
+}
+
+/* Penyesuaian Desain Tabel Kategori */
+.custom-category-table {
+    border-collapse: collapse;
+}
+
+.custom-category-table thead th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.custom-category-table tbody td {
+    padding: 12px;
+    font-size: 14px;
+    color: #333333;
+}
+
+/* Tombol Aksi Tabel (Sesuai Gambar Referensi) */
+.btn-action-edit {
+    background-color: #1d747a;
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    transition: opacity 0.2s;
+}
+
+.btn-action-delete {
+    background-color: #c94a4a;
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    transition: opacity 0.2s;
+}
+
+.btn-action-edit:hover, .btn-action-delete:hover {
+    opacity: 0.9;
+}
+
+/* Notifikasi Floating Alert Sukses (Hijau di Atas) */
+.custom-alert-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1080;
+}
+
+.custom-success-alert {
+    background-color: #4dbb96;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideDownIn 0.3s ease-out forwards;
+}
+
+@keyframes slideDownIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

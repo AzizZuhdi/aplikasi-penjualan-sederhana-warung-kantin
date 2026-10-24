@@ -91,106 +91,68 @@
                 </a>
             </nav>
         </aside>
-
-        <!-- KONTEN KATEGORI (Kanan) -->
+<!-- KONTEN UTAMA -->
         <main class="main-content">
-            <h1 class="page-title">Kategori Produk</h1>
-            <p class="breadcrumb-text">Menu &gt; Kategori</p>
-
-            <section class="product-panel">
-                <div class="panel-heading">Daftar Kategori & Produk</div>
-
-                <div class="toolbar">
-                    <input type="search" id="kategoriSearch" class="form-control" placeholder="🔍 Cari nama produk...">
-                    <select id="categoryFilter" class="form-select">
-                        <option value="">Semua Kategori</option>
-                        <option value="Makanan">Makanan</option>
-                        <option value="Minuman">Minuman</option>
-                    </select>
-
-                    <!-- Perhatikan bagian onclick berubah menjadi prepareAddKategori() -->
-                    <button class="add-button" data-bs-toggle="modal" data-bs-target="#kategoriModal"
-                        onclick="prepareAddKategori()">
-                        <i class="fa-solid fa-plus me-1"></i> Tambah
-                    </button>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table table-bordered product-table align-middle">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Produk</th>
-                                <th>Kategori</th>
-                                <th>Harga</th>
-                                <th>Stok</th>
-                                <th class="text-center">Aksi</th>
-                            </tr>
-                        </thead>
-                        <!-- Tbody dikosongkan karena akan diisi otomatis oleh JavaScript -->
-                        <tbody id="kategoriTableBody">
-                        </tbody>
-                    </table>
-                </div>
+            <section id="ringkasan">
+                <h1 class="page-title">Manajemen Kategori</h1>
+                <p class="breadcrumb-text">Menu &gt; Kategori</p>
             </section>
-        </main>
 
-    </div>
-
-    <!-- MODAL TAMBAH/EDIT KATEGORI PRODUK -->
-    <div class="modal fade" id="kategoriModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold" id="modalTitle">Tambah Data</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+            <!-- TAMPILAN PANEL GRID (DUA KOTAK SEJAJAR) -->
+            <div class="row g-4">
+                <!-- FORM TAMBAH KATEGORI (KIRI) -->
+                <div class="col-md-5">
+                    <div class="category-card">
+                        <h2 class="card-box-title">Tambah Kategori Baru</h2>
+                        <form id="categoryForm">
+                            <input type="hidden" id="categoryId">
+                            <div class="mb-3">
+                                <label for="categoryName" class="form-label-custom">Nama Kategori:</label>
+                                <input type="text" class="form-control input-custom" id="categoryName" placeholder="Masukkan nama kategori" required>
+                                <small class="text-muted mt-1 d-block" style="font-size: 12px;">Masukkan nama kategori</small>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-save-category flex-grow-1" id="saveCategoryBtn">Simpan Kategori</button>
+                                <button type="button" class="btn btn-secondary d-none" id="cancelEditBtn">Batal</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <form id="kategoriForm">
-                    <div class="modal-body">
-                        <input type="hidden" id="editIndex" value="-1">
 
-                        <div class="mb-3">
-                            <label for="productName" class="form-label">Nama Produk</label>
-                            <input type="text" class="form-control" id="productName"
-                                placeholder="Masukkan nama produk..." required>
+                <!-- TABEL DAFTAR KATEGORI (KANAN) -->
+                <div class="col-md-7">
+                    <div class="category-card">
+                        <h2 class="card-box-title">Daftar Kategori Produk</h2>
+                        
+                        <!-- Pencarian Internal Tabel -->
+                        <div class="position-relative mb-3">
+                            <input type="text" class="form-control table-search-input" id="searchKategoriTable" placeholder="Search...">
+                            <i class="fa-solid fa-magnifying-glass position-absolute end-0 top-50 translate-middle-y me-3 text-muted"></i>
                         </div>
-                        <div class="mb-3">
-                            <label for="productCategory" class="form-label">Kategori</label>
-                            <select class="form-select" id="productCategory" required>
-                                <option value="">Pilih Kategori</option>
-                                <option value="Makanan">Makanan</option>
-                                <option value="Minuman">Minuman</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="productCode" class="form-label">Kode Produk</label>
-                            <input type="text" class="form-control" id="productCode"
-                                placeholder="Masukkan kode produk..." required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="productPrice" class="form-label">Harga (Rp)</label>
-                            <input type="number" min="0" class="form-control" id="productPrice"
-                                placeholder="Masukkan harga..." required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="productStock" class="form-label">Stok</label>
-                            <input type="number" min="0" class="form-control" id="productStock"
-                                placeholder="Masukkan jumlah stok..." required>
+
+                        <!-- Tabel Kategori -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered custom-category-table align-middle text-center m-0">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 15%;">NO</th>
+                                        <th>NAMA KATEGORI</th>
+                                        <th style="width: 30%;">AKSI</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="categoryTableBody">
+                                    <!-- Render data via JavaScript -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa-solid fa-floppy-disk me-1"></i> Simpan
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </main>
     </div>
 
-    <!-- JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JAVASCRIPT BOOTSTRAP -->
+    <script src="https://jsdelivr.net"></script>
     <script src="javascript.js"></script>
 </body>
 
