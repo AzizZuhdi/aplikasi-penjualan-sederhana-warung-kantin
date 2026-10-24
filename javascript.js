@@ -430,6 +430,12 @@ function initRiwayat() {
     const historyBody = document.getElementById("historyBody");
     const historySearch = document.getElementById("historySearch");
     const dateFilter = document.getElementById("dateFilter");
+    const detailPanel = document.getElementById("detailPanel"); // Elemen kotak detail
+
+    // Sembunyikan panel detail secara default saat halaman pertama kali dibuka
+    if (detailPanel) {
+        detailPanel.style.display = "none";
+    }
 
     function getDate(value) {
         const date = new Date(value);
@@ -509,7 +515,12 @@ function initRiwayat() {
         }
 
         document.getElementById("detailTotal").textContent = rupiah(transaction.total);
-        document.getElementById("detailPanel").scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+        // Munculkan dan arahkan pandangan ke panel detail saat tombol diklik
+        if (detailPanel) {
+            detailPanel.style.display = "block";
+            detailPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
     }
 
     historyBody.addEventListener("click", event => {
@@ -532,12 +543,18 @@ function initRiwayat() {
         });
     }
 
+    // Tombol Tutup / Kembali pada panel detail
     document.getElementById("backButton").addEventListener("click", () => {
         document.getElementById("detailNumber").textContent = "Pilih transaksi";
         document.getElementById("detailDate").textContent = "-";
         document.getElementById("detailBody").innerHTML = `<tr><td colspan="3" class="text-center">Belum ada transaksi dipilih</td></tr>`;
         document.getElementById("detailTotal").textContent = "Rp. 0";
         selectedTransaction = null;
+
+        // Sembunyikan kembali panel detail saat tombol tutup ditekan
+        if (detailPanel) {
+            detailPanel.style.display = "none";
+        }
     });
 
     window.addEventListener("storage", event => {
