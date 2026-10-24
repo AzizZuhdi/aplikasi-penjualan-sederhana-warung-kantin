@@ -29,9 +29,9 @@ function tampilkanProfilUser() {
         userRoleEl.textContent = currentUser.role;
 
         if (currentUser.role === "Pemilik") {
-            userRoleEl.className = "badge bg-warning text-dark mt-1"; 
+            userRoleEl.className = "badge bg-warning text-dark mt-1";
         } else {
-            userRoleEl.className = "badge bg-info text-dark mt-1"; 
+            userRoleEl.className = "badge bg-info text-dark mt-1";
         }
     }
 }
@@ -40,12 +40,30 @@ function tampilkanProfilUser() {
 function setupLogout() {
     const logoutBtns = document.querySelectorAll('a[href="login.html"]');
     logoutBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', function (e) {
             e.preventDefault();
             localStorage.removeItem('loggedInUser'); // Hapus sesi
             window.location.href = 'login.html'; // Kembali ke login
         });
     });
+}
+
+// PELINDUNG HALAMAN KHUSUS PEMILIK
+function cekFiturKhusus() {
+    if (!currentUser) return;
+
+    const menuPemilik = document.querySelectorAll('.menu-pemilik');
+
+    if (currentUser.role === "Pemilik") {
+        // Tampilkan semua menu yang memiliki class menu-pemilik
+        menuPemilik.forEach(el => el.classList.remove('d-none'));
+    } else {
+        // Jika Kasir memaksa membuka rekap.html, lempar kembali ke dashboard
+        if (window.location.pathname.includes('rekap.html')) {
+            alert("Akses Ditolak! Halaman ini khusus untuk Pemilik.");
+            window.location.href = "dashboard.html";
+        }
+    }
 }
 
 const rupiah = (value) => "Rp. " + Number(value || 0).toLocaleString("id-ID");
@@ -61,26 +79,36 @@ function escapeHTML(value) {
 // ==========================================
 document.addEventListener("DOMContentLoaded", function () {
 
+    // --- Jalankan Sistem Profil, Logout, & Hak Akses ---
+    tampilkanProfilUser();
+    setupLogout();
+    cekFiturKhusus();
+
     // --- Deteksi Halaman & Jalankan Fitur ---
 
-    // A. Jika di halaman Dashboard (Deteksi ada form pencariannya)
+    // A. Jika di halaman Dashboard
     if (document.getElementById("searchForm") && document.getElementById("searchInput")) {
         initDashboard();
     }
 
-    // B. Jika di halaman Kasir (Deteksi ada keranjang belanjanya)
+    // B. Jika di halaman Kasir
     if (document.getElementById("addToCart") && document.getElementById("cartBody")) {
         initKasir();
     }
 
-    // C. Jika di halaman Produk (Deteksi ada form produknya)
+    // C. Jika di halaman Produk
     if (document.getElementById("productForm") && document.getElementById("productTableBody")) {
         initProduk();
     }
 
-    // D. Jika di halaman Riwayat (Deteksi ada tabel riwayatnya)
+    // D. Jika di halaman Riwayat
     if (document.getElementById("historyBody") && document.getElementById("historySearch")) {
         initRiwayat();
+    }
+
+    // E. Jika di halaman Rekap (Deteksi Chart & Tabel Rekap)
+    if (document.getElementById("rekapChart") && document.getElementById("rekapTableBody")) {
+        initRekap();
     }
 });
 
@@ -298,7 +326,6 @@ function initProduk() {
     let products = [];
     let modalInstance = bootstrap.Modal.getOrCreateInstance(productModal);
 
-    // Didaftarkan ke 'window' agar bisa dipanggil oleh tombol di file HTML (onclick="prepareAdd()")
     window.prepareAdd = function () {
         productForm.reset();
         document.getElementById("editIndex").value = "-1";
@@ -516,6 +543,7 @@ function initRiwayat() {
 
     renderHistory();
 }
+
 // ==========================================
 // KODE KHUSUS UNTUK HALAMAN KATEGORI
 // ==========================================
@@ -526,14 +554,11 @@ const kategoriForm = document.getElementById('kategoriForm');
 const kategoriTableBody = document.getElementById('kategoriTableBody');
 const editIndexKategori = document.getElementById('editIndex');
 
-// Mengambil elemen Filter dan Pencarian
 const categoryFilter = document.getElementById('categoryFilter');
 const kategoriSearch = document.getElementById('kategoriSearch');
 
-// Cek apakah elemen kategori ada (agar tidak error di halaman lain)
 if (kategoriForm && kategoriTableBody) {
-    
-    // Event Listener untuk fitur Filter dan Pencarian
+
     if (categoryFilter) {
         categoryFilter.addEventListener('change', renderKategoriTable);
     }
@@ -541,11 +566,9 @@ if (kategoriForm && kategoriTableBody) {
         kategoriSearch.addEventListener('input', renderKategoriTable);
     }
 
-    // Fungsi saat form disubmit (Tambah atau Simpan Edit)
     kategoriForm.addEventListener('submit', function (e) {
-        e.preventDefault(); // Mencegah halaman reload
+        e.preventDefault();
 
-        // Ambil nilai dari inputan form
         const nama = document.getElementById('productName').value;
         const kategori = document.getElementById('productCategory').value;
         const harga = document.getElementById('productPrice').value;
@@ -553,43 +576,35 @@ if (kategoriForm && kategoriTableBody) {
         const index = editIndexKategori.value;
 
         if (index == -1) {
-            // Tambah data baru
             kategoriData.push({ nama, kategori, harga, stok });
         } else {
-            // Update data lama (Edit)
             kategoriData[index] = { nama, kategori, harga, stok };
-            editIndexKategori.value = -1; // Kembalikan index ke mode tambah
+            editIndexKategori.value = -1;
         }
 
-        // Tutup modal bootstrap
         const modal = bootstrap.Modal.getInstance(document.getElementById('kategoriModal'));
         modal.hide();
 
-        // Bersihkan form & tampilkan tabel
         kategoriForm.reset();
         renderKategoriTable();
     });
 }
 
-// Fungsi untuk me-render (menampilkan) data ke dalam tabel
 function renderKategoriTable() {
     if (!kategoriTableBody) return;
-    
-    kategoriTableBody.innerHTML = ''; // Kosongkan tabel sebelum diisi ulang
 
-    // Ambil nilai yang sedang dipilih di filter dan pencarian
+    kategoriTableBody.innerHTML = '';
+
     const filterValue = categoryFilter ? categoryFilter.value : '';
     const searchValue = kategoriSearch ? kategoriSearch.value.toLowerCase() : '';
 
     kategoriData.forEach((item, index) => {
-        // Logika untuk mencocokkan data dengan filter & pencarian
         const matchCategory = (filterValue === '' || item.kategori === filterValue);
         const matchSearch = item.nama.toLowerCase().includes(searchValue);
 
-        // Hanya tampilkan baris jika cocok dengan kategori DAN pencarian
         if (matchCategory && matchSearch) {
             let badgeClass = item.kategori === 'Makanan' ? 'bg-primary' : 'bg-info';
-            
+
             kategoriTableBody.innerHTML += `
                 <tr>
                     <td>${index + 1}</td>
@@ -611,21 +626,19 @@ function renderKategoriTable() {
     });
 }
 
-// Fungsi untuk memunculkan data ke form saat tombol Edit diklik
 function editKategori(index) {
     const item = kategoriData[index];
     document.getElementById('productName').value = item.nama;
     document.getElementById('productCategory').value = item.kategori;
     document.getElementById('productPrice').value = item.harga;
     document.getElementById('productStock').value = item.stok;
-    
-    editIndexKategori.value = index; 
+
+    editIndexKategori.value = index;
 
     const modal = new bootstrap.Modal(document.getElementById('kategoriModal'));
     modal.show();
 }
 
-// Fungsi untuk menghapus data
 function hapusKategori(index) {
     if (confirm("Apakah Anda yakin ingin menghapus produk ini dari kategori?")) {
         kategoriData.splice(index, 1);
@@ -633,10 +646,146 @@ function hapusKategori(index) {
     }
 }
 
-// Fungsi membersihkan form saat tombol "Tambah" diklik
 function prepareAddKategori() {
-    if(kategoriForm) {
+    if (kategoriForm) {
         kategoriForm.reset();
         editIndexKategori.value = -1;
+    }
+}
+
+// ==========================================
+// KODE KHUSUS UNTUK HALAMAN REKAP (KHUSUS PEMILIK)
+// ==========================================
+let rekapChartInstance = null; // Variabel untuk menyimpan grafik agar bisa di-reset saat difilter
+
+function initRekap() {
+    const formFilter = document.getElementById('formFilterRekap');
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+    const kategoriInput = document.getElementById('kategoriRekap');
+
+    function loadRekapData() {
+        let transactions = [];
+        let products = [];
+        try {
+            transactions = JSON.parse(localStorage.getItem("transactions") || "[]");
+            products = JSON.parse(localStorage.getItem("products") || "[]");
+        } catch (e) { console.error(e); }
+
+        // Buat pemetaan (kamus) untuk mencari kategori berdasarkan nama produk
+        const categoryMap = {};
+        products.forEach(p => {
+            categoryMap[p.nama] = p.kategori;
+        });
+
+        // Ambil nilai dari input filter
+        const startDate = startDateInput && startDateInput.value ? new Date(startDateInput.value) : null;
+        let endDate = endDateInput && endDateInput.value ? new Date(endDateInput.value) : null;
+
+        // Atur agar End Date mencakup hingga jam 23:59:59 di hari tersebut
+        if (endDate) {
+            endDate.setHours(23, 59, 59, 999);
+        }
+
+        const selectedKategori = kategoriInput ? kategoriInput.value : '';
+
+        const productSales = {}; // Untuk data grafik
+        const soldItems = [];    // Untuk data tabel
+
+        // Mulai Filter Data
+        transactions.forEach(trx => {
+            const trxDate = new Date(trx.tanggal);
+
+            // 1. Filter Berdasarkan Tanggal / Periode
+            if (startDate && trxDate < startDate) return; // Abaikan jika lebih lama dari start date
+            if (endDate && trxDate > endDate) return;     // Abaikan jika lebih baru dari end date
+
+            const tgl = trxDate.toLocaleDateString('id-ID');
+
+            (trx.items || []).forEach(item => {
+                // Cari kategori produk ini apa
+                const itemCat = categoryMap[item.nama] || 'Lainnya';
+
+                // 2. Filter Berdasarkan Kategori
+                if (selectedKategori !== '' && itemCat !== selectedKategori) return;
+
+                // Masukkan ke hitungan Grafik
+                if (!productSales[item.nama]) {
+                    productSales[item.nama] = 0;
+                }
+                productSales[item.nama] += item.qty;
+
+                // Masukkan ke array Tabel
+                soldItems.push({
+                    tanggal: tgl,
+                    nama: item.nama,
+                    kategori: itemCat,
+                    qty: item.qty,
+                    total: item.harga * item.qty
+                });
+            });
+        });
+
+        // 1. TAMPILKAN TABEL
+        const tbody = document.getElementById("rekapTableBody");
+        if (soldItems.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4">Tidak ada data penjualan pada filter ini.</td></tr>`;
+        } else {
+            tbody.innerHTML = soldItems.map((item, index) => `
+                <tr>
+                    <td class="text-center">${index + 1}</td>
+                    <td>${item.tanggal}</td>
+                    <td>
+                        ${escapeHTML(item.nama)} 
+                        <span class="badge bg-secondary ms-1" style="font-size:10px;">${item.kategori}</span>
+                    </td>
+                    <td class="text-center">${item.qty}</td>
+                    <td>${rupiah(item.total)}</td>
+                </tr>
+            `).join("");
+        }
+
+        // 2. TAMPILKAN GRAFIK (Chart.js)
+        const ctx = document.getElementById('rekapChart').getContext('2d');
+        const labels = Object.keys(productSales);
+        const dataQty = Object.values(productSales);
+
+        // Hancurkan grafik lama jika sudah ada, agar tidak numpuk / error saat difilter
+        if (rekapChartInstance) {
+            rekapChartInstance.destroy();
+        }
+
+        rekapChartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Jumlah Terjual (Item)',
+                    data: dataQty,
+                    backgroundColor: 'rgba(255, 193, 7, 0.7)',
+                    borderColor: '#ffc107',
+                    borderWidth: 1,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, ticks: { stepSize: 1 } }
+                }
+            }
+        });
+    }
+
+    // Jalankan pertama kali saat halaman dimuat
+    loadRekapData();
+
+    // Jalankan saat tombol "Tampilkan" (Submit Filter) ditekan
+    if (formFilter) {
+        formFilter.addEventListener('submit', function (e) {
+            e.preventDefault(); // Cegah halaman refresh
+            loadRekapData(); // Render ulang tabel dan grafik sesuai filter
+        });
     }
 }
