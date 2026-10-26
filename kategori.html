@@ -56,42 +56,27 @@
 
     <!-- LAYOUT UTAMA -->
     <div class="page-layout">
-
-        <!-- SIDEBAR KIRI -->
         <!-- SIDEBAR -->
         <aside class="sidebar">
             <nav class="nav flex-column" id="sidebarMenu">
-                <a class="nav-link" href="dashboard.html">
-                    <i class="fa-solid fa-house"></i><span>Dashboard</span>
-                </a>
+                <a class="nav-link" href="dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+                <a class="nav-link active" href="kategori.html"><i class="fa-solid fa-tags"></i><span>Kategori</span></a>
+                <a class="nav-link" href="produk.html"><i class="fa-solid fa-layer-group"></i><span>Produk</span></a>
+                <a class="nav-link" href="kasir.html"><i
+                        class="fa-solid fa-bag-shopping"></i><span>Kasir/Penjualan</span></a>
+                <a class="nav-link" href="riwayat.html"><i class="fa-regular fa-clock"></i><span>Riwayat</span></a>
+                <a class="nav-link" href="laporan.html"><i class="fa-solid fa-book"></i><span>Laporan</span></a>
 
-                <!-- MENU REKAP KHUSUS PEMILIK -->
+                <!-- MENU REKAP KHUSUS PEMILIK (Dipindah ke bawah Laporan) -->
                 <a class="nav-link menu-pemilik d-none" href="rekap.html">
-                    <i class="fa-solid fa-chart-pie"></i><span>Rekap Keuangan</span>
+                    <i class="fa-solid fa-chart-pie"></i><span>Rekap Penjualan</span>
                 </a>
 
-                <!-- KATEGORI (ACTIVE) -->
-                <a class="nav-link active" href="kategori.html">
-                    <i class="fa-solid fa-tags"></i><span>Kategori</span>
-                </a>
-                <a class="nav-link" href="produk.html">
-                    <i class="fa-solid fa-layer-group"></i><span>Produk</span>
-                </a>
-                <a class="nav-link" href="kasir.html">
-                    <i class="fa-solid fa-bag-shopping"></i><span>Kasir/Penjualan</span>
-                </a>
-                <a class="nav-link" href="riwayat.html">
-                    <i class="fa-regular fa-clock"></i><span>Riwayat</span>
-                </a>
-                <a class="nav-link" href="laporan.html">
-                    <i class="fa-solid fa-book"></i><span>Laporan</span>
-                </a>
-                <a class="nav-link" href="login.html">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span>
-                </a>
+                <a class="nav-link" href="login.html"><i
+                        class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></a>
             </nav>
         </aside>
-<!-- KONTEN UTAMA -->
+        <!-- KONTEN UTAMA -->
         <main class="main-content">
             <section id="ringkasan">
                 <h1 class="page-title">Manajemen Kategori</h1>
@@ -108,11 +93,14 @@
                             <input type="hidden" id="categoryId">
                             <div class="mb-3">
                                 <label for="categoryName" class="form-label-custom">Nama Kategori:</label>
-                                <input type="text" class="form-control input-custom" id="categoryName" placeholder="Masukkan nama kategori" required>
-                                <small class="text-muted mt-1 d-block" style="font-size: 12px;">Masukkan nama kategori</small>
+                                <input type="text" class="form-control input-custom" id="categoryName"
+                                    placeholder="Masukkan nama kategori" required>
+                                <small class="text-muted mt-1 d-block" style="font-size: 12px;">Masukkan nama
+                                    kategori</small>
                             </div>
                             <div class="d-flex gap-2">
-                                <button type="submit" class="btn btn-save-category flex-grow-1" id="saveCategoryBtn">Simpan Kategori</button>
+                                <button type="submit" class="btn btn-save-category flex-grow-1"
+                                    id="saveCategoryBtn">Simpan Kategori</button>
                                 <button type="button" class="btn btn-secondary d-none" id="cancelEditBtn">Batal</button>
                             </div>
                         </form>
@@ -123,11 +111,13 @@
                 <div class="col-md-7">
                     <div class="category-card">
                         <h2 class="card-box-title">Daftar Kategori Produk</h2>
-                        
+
                         <!-- Pencarian Internal Tabel -->
                         <div class="position-relative mb-3">
-                            <input type="text" class="form-control table-search-input" id="searchKategoriTable" placeholder="Search...">
-                            <i class="fa-solid fa-magnifying-glass position-absolute end-0 top-50 translate-middle-y me-3 text-muted"></i>
+                            <input type="text" class="form-control table-search-input" id="searchKategoriTable"
+                                placeholder="Search...">
+                            <i
+                                class="fa-solid fa-magnifying-glass position-absolute end-0 top-50 translate-middle-y me-3 text-muted"></i>
                         </div>
 
                         <!-- Tabel Kategori -->

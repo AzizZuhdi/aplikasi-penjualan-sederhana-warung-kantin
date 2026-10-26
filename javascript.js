@@ -28,7 +28,8 @@ function tampilkanProfilUser() {
         userNameEl.textContent = currentUser.nama;
         userRoleEl.textContent = currentUser.role;
 
-        if (currentUser.role === "Pemilik") {
+        // Ubah pengecekan menjadi berdasarkan username karena role sudah sama ("Status")
+        if (currentUser.username === "pemilik") {
             userRoleEl.className = "badge bg-warning text-dark mt-1";
         } else {
             userRoleEl.className = "badge bg-info text-dark mt-1";
@@ -54,7 +55,8 @@ function cekFiturKhusus() {
 
     const menuPemilik = document.querySelectorAll('.menu-pemilik');
 
-    if (currentUser.role === "Pemilik") {
+    // Ubah pengecekan menjadi berdasarkan username karena role sudah diubah jadi "Status"
+    if (currentUser.username === "pemilik") {
         // Tampilkan semua menu yang memiliki class menu-pemilik
         menuPemilik.forEach(el => el.classList.remove('d-none'));
     } else {
