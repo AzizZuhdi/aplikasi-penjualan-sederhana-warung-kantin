@@ -5,134 +5,148 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kategori - Aplikasi Kantin</title>
-
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!-- Style css -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- HEADER / NAVBAR -->
     <nav class="navbar navbar-expand navbar-dark topbar">
         <a href="dashboard.html" class="brand">
             <i class="fa-solid fa-store"></i>
             Aplikasi Penjualan Sederhana Warung/Kantin
         </a>
 
-        <!-- PENCARIAN -->
-        <form class="search-form" id="globalSearch">
-            <input type="search" class="form-control" id="globalSearchInput"
-                placeholder="Cari transaksi, produk, atau lainnya" aria-label="Cari">
+        <form class="search-form" action="#" method="GET">
+            <input type="search" class="form-control" name="q" placeholder="Cari transaksi, produk, atau lainnya"
+                aria-label="Cari">
             <button type="submit" class="btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>
 
-        <!-- ADMIN -->
-        <ul class="navbar-nav admin-dropdown">
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-                    <i class="fa-solid fa-circle-user fs-4 me-2"></i>
-                    <div class="text-start d-none d-sm-block">
-                        <span id="userName" class="d-block fw-bold" style="font-size: 14px; line-height: 1;">User</span>
-                        <span id="userRole" class="badge bg-warning text-dark mt-1"
-                            style="font-size: 10px;">Peran</span>
-                    </div>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a class="dropdown-item text-danger fw-bold" href="login.html">
-                            <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Logout
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        <div class="admin-dropdown d-flex align-items-center gap-3">
+            <div class="d-flex align-items-center text-white">
+                <i class="fa-solid fa-circle-user fs-4 me-2"></i>
+                <div class="text-start d-none d-sm-block">
+                    <span class="d-block fw-bold" style="font-size: 14px; line-height: 1;">Kasir/Admin</span>
+                    <span class="badge bg-info text-dark mt-1" style="font-size: 10px;">Status</span>
+                </div>
+            </div>
+
+            <a href="login.html" class="btn btn-danger btn-sm fw-bold">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </a>
+        </div>
     </nav>
 
-    <!-- LAYOUT UTAMA -->
     <div class="page-layout">
-        <!-- SIDEBAR -->
         <aside class="sidebar">
             <nav class="nav flex-column" id="sidebarMenu">
-                <a class="nav-link" href="dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
-                <a class="nav-link active" href="kategori.html"><i class="fa-solid fa-tags"></i><span>Kategori</span></a>
-                <a class="nav-link" href="produk.html"><i class="fa-solid fa-layer-group"></i><span>Produk</span></a>
-                <a class="nav-link" href="kasir.html"><i
-                        class="fa-solid fa-bag-shopping"></i><span>Kasir/Penjualan</span></a>
-                <a class="nav-link" href="riwayat.html"><i class="fa-regular fa-clock"></i><span>Riwayat</span></a>
-                <a class="nav-link" href="laporan.html"><i class="fa-solid fa-book"></i><span>Laporan</span></a>
 
-                <!-- MENU REKAP KHUSUS PEMILIK (Dipindah ke bawah Laporan) -->
-                <a class="nav-link menu-pemilik d-none" href="rekap.html">
-                    <i class="fa-solid fa-chart-pie"></i><span>Rekap Penjualan</span>
+                <a class="nav-link d-flex justify-content-between align-items-center" href="dashboard.html">
+                    <div>
+                        <i class="fa-solid fa-house"></i><span>Dashboard</span>
+                    </div>
+                    <span class="badge bg-secondary ms-2" style="font-size: 0.65em;">Kasir/Admin</span>
                 </a>
 
-                <a class="nav-link" href="login.html"><i
-                        class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></a>
+                <a class="nav-link active d-flex justify-content-between align-items-center" href="kategori.html">
+                    <div>
+                        <i class="fa-solid fa-tags"></i><span>Kategori</span>
+                    </div>
+                    <span class="badge bg-secondary ms-2" style="font-size: 0.65em;">Kasir/Admin</span>
+                </a>
+
+                <a class="nav-link d-flex justify-content-between align-items-center" href="produk.html">
+                    <div>
+                        <i class="fa-solid fa-layer-group"></i><span>Produk</span>
+                    </div>
+                    <span class="badge bg-secondary ms-2" style="font-size: 0.65em;">Kasir/Admin</span>
+                </a>
+
+                <a class="nav-link d-flex justify-content-between align-items-center" href="kasir.html">
+                    <div>
+                        <i class="fa-solid fa-bag-shopping"></i><span>Kasir/Penjualan</span>
+                    </div>
+                    <span class="badge bg-secondary ms-2" style="font-size: 0.65em;">Kasir/Admin</span>
+                </a>
+
+                <a class="nav-link d-flex justify-content-between align-items-center" href="riwayat.html">
+                    <div>
+                        <i class="fa-regular fa-clock"></i><span>Riwayat</span>
+                    </div>
+                    <span class="badge bg-secondary ms-2" style="font-size: 0.65em;">Kasir/Admin</span>
+                </a>
+
+                <a class="nav-link d-flex justify-content-between align-items-center" href="laporan.html">
+                    <div>
+                        <i class="fa-solid fa-book"></i><span>Laporan</span>
+                    </div>
+                    <span class="badge bg-secondary ms-2" style="font-size: 0.65em;">Kasir/Admin</span>
+                </a>
+
+                <a class="nav-link menu-pemilik d-flex justify-content-between align-items-center" href="rekap.html">
+                    <div>
+                        <i class="fa-solid fa-chart-pie"></i><span>Rekap Penjualan</span>
+                    </div>
+                    <span class="badge bg-primary ms-2" style="font-size: 0.65em;">Pemilik</span>
+                </a>
+
+                <a class="nav-link mt-4" href="login.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span>
+                </a>
             </nav>
         </aside>
-        <!-- KONTEN UTAMA -->
+
         <main class="main-content">
             <section id="ringkasan">
                 <h1 class="page-title">Manajemen Kategori</h1>
                 <p class="breadcrumb-text">Menu &gt; Kategori</p>
             </section>
 
-            <!-- TAMPILAN PANEL GRID (DUA KOTAK SEJAJAR) -->
             <div class="row g-4">
-                <!-- FORM TAMBAH KATEGORI (KIRI) -->
                 <div class="col-md-5">
                     <div class="category-card">
                         <h2 class="card-box-title">Tambah Kategori Baru</h2>
-                        <form id="categoryForm">
-                            <input type="hidden" id="categoryId">
+                        <form action="kategori.html" method="GET">
                             <div class="mb-3">
                                 <label for="categoryName" class="form-label-custom">Nama Kategori:</label>
-                                <input type="text" class="form-control input-custom" id="categoryName"
+                                <input type="text" class="form-control input-custom" id="categoryName" name="kategori"
                                     placeholder="Masukkan nama kategori" required>
                                 <small class="text-muted mt-1 d-block" style="font-size: 12px;">Masukkan nama
                                     kategori</small>
                             </div>
                             <div class="d-flex gap-2">
-                                <button type="submit" class="btn btn-save-category flex-grow-1"
-                                    id="saveCategoryBtn">Simpan Kategori</button>
-                                <button type="button" class="btn btn-secondary d-none" id="cancelEditBtn">Batal</button>
+                                <button type="submit" class="btn btn-primary flex-grow-1">Simpan Kategori</button>
+                                <button type="reset" class="btn btn-secondary">Batal</button>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <!-- TABEL DAFTAR KATEGORI (KANAN) -->
                 <div class="col-md-7">
                     <div class="category-card">
                         <h2 class="card-box-title">Daftar Kategori Produk</h2>
 
-                        <!-- Pencarian Internal Tabel -->
+
                         <div class="position-relative mb-3">
-                            <input type="text" class="form-control table-search-input" id="searchKategoriTable"
-                                placeholder="Search...">
+                            <input type="text" class="form-control table-search-input"
+                                placeholder="Search... (Pencarian dimatikan)">
                             <i
                                 class="fa-solid fa-magnifying-glass position-absolute end-0 top-50 translate-middle-y me-3 text-muted"></i>
                         </div>
 
-                        <!-- Tabel Kategori -->
                         <div class="table-responsive">
                             <table class="table table-bordered custom-category-table align-middle text-center m-0">
-                                <thead>
+                                <thead class="table-light">
                                     <tr>
                                         <th style="width: 15%;">NO</th>
                                         <th>NAMA KATEGORI</th>
                                         <th style="width: 30%;">AKSI</th>
                                     </tr>
                                 </thead>
-                                <tbody id="categoryTableBody">
-                                    <!-- Render data via JavaScript -->
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -141,9 +155,6 @@
         </main>
     </div>
 
-    <!-- JAVASCRIPT BOOTSTRAP -->
-    <script src="https://jsdelivr.net"></script>
-    <script src="javascript.js"></script>
 </body>
 
 </html>
