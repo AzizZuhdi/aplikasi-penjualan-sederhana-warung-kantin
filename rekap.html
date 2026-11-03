@@ -29,22 +29,26 @@
         </form>
 
 
-        <div class="admin-dropdown d-flex align-items-center gap-3">
-
-
-            <div class="d-flex align-items-center text-white">
-                <i class="fa-solid fa-circle-user fs-4 me-2"></i>
+        <div class="admin-dropdown dropdown">
+            <!-- Tombol Profile & Panah Dropdown -->
+            <button
+                class="btn btn-link text-white text-decoration-none d-flex align-items-center gap-2 dropdown-toggle shadow-none"
+                type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-circle-user fs-4"></i>
                 <div class="text-start d-none d-sm-block">
                     <span class="d-block fw-bold" style="font-size: 14px; line-height: 1;">Pemilik</span>
                     <span class="badge bg-warning text-dark mt-1" style="font-size: 10px;">Status</span>
                 </div>
-            </div>
+            </button>
 
-
-            <a href="login.html" class="btn btn-danger btn-sm fw-bold">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
-            </a>
-
+            <!-- Popup Menu Logout -->
+            <ul class="dropdown-menu dropdown-menu-end shadow mt-2" aria-labelledby="userDropdown">
+                <li>
+                    <a class="dropdown-item text-danger fw-bold" href="login.html">
+                        <i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Logout
+                    </a>
+                </li>
+            </ul>
         </div>
 
     </nav>

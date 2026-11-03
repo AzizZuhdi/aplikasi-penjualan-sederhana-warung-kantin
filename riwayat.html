@@ -27,17 +27,24 @@
             </button>
         </form>
 
-        <div class="admin-dropdown d-flex align-items-center gap-3 ms-auto">
-            <div class="d-flex align-items-center text-white">
-                <i class="fa-solid fa-circle-user fs-4 me-2"></i>
+        <div class="admin-dropdown dropdown">
+            <button
+                class="btn btn-link text-white text-decoration-none d-flex align-items-center gap-2 dropdown-toggle shadow-none"
+                type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-circle-user fs-4"></i>
                 <div class="text-start d-none d-sm-block">
                     <span class="d-block fw-bold" style="font-size: 14px; line-height: 1;">Kasir/Admin</span>
                     <span class="badge bg-info text-dark mt-1" style="font-size: 10px;">Status</span>
                 </div>
-            </div>
-            <a href="login.html" class="btn btn-danger btn-sm fw-bold">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
-            </a>
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end shadow mt-2" aria-labelledby="userDropdown">
+                <li>
+                    <a class="dropdown-item text-danger fw-bold" href="login.html">
+                        <i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Logout
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -126,6 +133,7 @@
                     </div>
                 </div>
 
+                <!-- TABEL DAFTAR TRANSAKSI DENGAN DUMMY DATA -->
                 <div class="table-responsive mt-3">
                     <table class="table history-table mb-0 align-middle text-center">
                         <thead class="table-light">
@@ -137,12 +145,39 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>TRX-1792603250486</td>
+                                <td>22/10/2026, 00.20</td>
+                                <td>Rp. 35.000</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-info text-white fw-semibold"
+                                        data-bs-toggle="modal" data-bs-target="#modalDetail">
+                                        <i class="fa-solid fa-eye me-1"></i> Detail
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>TRX-1792603250487</td>
+                                <td>22/10/2026, 08.15</td>
+                                <td>Rp. 20.000</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-info text-white fw-semibold"
+                                        data-bs-toggle="modal" data-bs-target="#modalDetail">
+                                        <i class="fa-solid fa-eye me-1"></i> Detail
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </section>
         </main>
     </div>
 
+    <!-- MODAL DETAIL TRANSAKSI DENGAN DUMMY DATA BEBERAPA ITEM -->
     <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="modalDetailLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content"
@@ -172,16 +207,21 @@
                             </thead>
                             <tbody style="background-color: #f8f9fa;">
                                 <tr>
-                                    <td>Donat</td>
+                                    <td>Donat Cokelat</td>
                                     <td class="text-center">3</td>
                                     <td>Rp. 15.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Es Teh Manis</td>
+                                    <td class="text-center">2</td>
+                                    <td>Rp. 20.000</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
                     <div class="text-end mt-4 mb-4">
-                        <h4 class="fw-bold m-0" style="color: #000;">Total Bayar: Rp. 15.000</h4>
+                        <h4 class="fw-bold m-0" style="color: #000;">Total Bayar: Rp. 35.000</h4>
                     </div>
 
                     <div class="text-start mt-2">
